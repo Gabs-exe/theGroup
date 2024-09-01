@@ -9,8 +9,8 @@
 </head>
 
 <body>
-  <div class="top-strip">
-    <img src="logo.png" alt="Company Logo" class="logo">
+  <div class="navbar">
+    <img src="logo.png" alt="FlyDream" class="logo">
     <div class="top-right">
       <button>Language</button>
       <button>Sign In</button>
@@ -31,11 +31,31 @@
       <div class="form-row">
         <div class="form-group">
           <label for="from-location">From:</label>
-          <input type="text" id="from-location" name="from-location" placeholder="Enter departure city" required>
+          <input type="text" id="from-location" name="from-location" placeholder="Enter departure city" list="from-list">
+            <datalist id="from-list">
+              <option value="Australia" disabled>Australia</option>
+              <option value="Sydney"></option>
+              <option value="Melbourne"></option>
+              <option value="Perth"></option>
+              <option value="Brisbane"></option>
+              <option value="New Zealand" disabled>New Zealand</option>
+              <option value="Auckland"></option>
+              <option value="Wellington"></option>
+            </datalist>
         </div>
         <div class="form-group">
           <label for="to-location">To:</label>
-          <input type="text" id="to-location" name="to-location" placeholder="Enter destination city" required>
+          <input type="text" id="to-location" name="to-location" placeholder="Enter destination city" list="to-list" required>
+            <datalist id="to-list">
+              <option value="Australia" disabled>Australia</option>
+              <option value="Sydney"></option>
+              <option value="Melbourne"></option>
+              <option value="Perth"></option>
+              <option value="Brisbane"></option>
+              <option value="New Zealand" disabled>New Zealand</option>
+              <option value="Auckland"></option>
+              <option value="Wellington"></option>
+            </datalist>
         </div>
       </div>
       <div class="form-row">
@@ -51,7 +71,17 @@
       <div class="additional-options">
         <div class="form-group">
           <label for="passengers">Total Passengers:</label>
-          <input type="number" id="passengers" name="passengers" min="1" max="9999" required>
+          <select id="passengers" name="passengers" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
         </div>
         <div class="form-group">
           <input type="checkbox" id="one-way" name="one-way">

@@ -1,195 +1,194 @@
-/* Ensure the body fills the entire viewport */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    color: #004d40;
-    background-color: #f8f8f8;
-    /* Set the background color to off-white */
-}
+ /* Ensure the body fills the entire viewport */
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     height: 100vh;
+     color: #004d40;
+     background-color: #f8f8f8;
+ }
 
-/* Top strip of the website */
-.top-strip {
-    width: 100%;
-    height: 75px;
-    background-color: #F99F1C;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-}
+ /* Top strip of the website */
+ .navbar {
+     width: 100%;
+     height: 75px;
+     background-color: #F99F1C;
+     position: fixed;
+     top: 0;
+     left: 0;
+     z-index: 1000;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 0 20px;
+ }
 
-/* Logo styling */
-.logo {
-    width: 150px;
-    height: 50px;
-    border-radius: 10%;
-    overflow: hidden;
-    margin-left: 180px;
-    /* Push logo 100px to the right */
-}
+ /* Logo styling */
+ .logo {
+     width: 150px;
+     height: 50px;
+     border-radius: 10%;
+     overflow: hidden;
+     margin-left: 180px;
+     /* Push logo 100px to the right */
+ }
 
-/* Top right buttons */
-.top-right {
-    display: flex;
-    gap: 15px;
-    margin-right: 175px;
-    /* Push buttons 100px to the left */
-}
+ /* Top right buttons */
+ .top-right {
+     display: flex;
+     gap: 15px;
+     margin-right: 175px;
+     /* Push buttons 100px to the left */
+ }
 
-/* Buttons styling */
-.top-right button {
-    padding: 8px 15px;
-    background-color: #F99F1C;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
+ /* Buttons styling */
+ .top-right button {
+     padding: 8px 15px;
+     background-color: #F99F1C;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 14px;
+ }
 
-/* Button hover effect */
-.top-right button:hover {
-    background-color: #00332c;
-}
+ /* Button hover effect */
+ .top-right button:hover {
+     background-color: #00332c;
+ }
 
-/* Section for the colored strip */
-.color-strip {
-    width: 100%;
-    height: 300px;
-    background-color: #032B73;
-    position: fixed;
-    top: 75px;
-    /* Positioned right below the top-strip */
-    left: 0;
-    z-index: 900;
-    /* Lower z-index to allow overlap */
-}
+ /* Section for the colored strip */
+ .color-strip {
+     width: 100%;
+     height: 300px;
+     background-color: #032B73;
+     position: fixed;
+     top: 75px;
+     /* Positioned right below the top-strip */
+     left: 0;
+     z-index: 900;
+     /* Lower z-index to allow overlap */
+ }
 
-/* Container styling */
-.container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    max-width: 800px;
-    width: 90%;
-    position: relative;
-    border: 2px solid #004d40;
-    margin-top: 120px;
-    /* Adjusted to overlap with the color strip */
-    z-index: 1000;
-    /* Ensure it's on top of the color strip */
-}
+ /* Container styling */
+ .container {
+     background-color: white;
+     padding: 40px;
+     border-radius: 15px;
+     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+     max-width: 800px;
+     width: 90%;
+     position: relative;
+     border: 2px solid #004d40;
+     margin-top: 120px;
+     /* Adjusted to overlap with the color strip */
+     z-index: 1000;
+     /* Ensure it's on top of the color strip */
+ }
 
-/* Menu row styling */
-.menu-row {
-    display: flex;
-    justify-content: space-around;
-    background-color: #022A73;
-    /* Example background color for the menu row */
-    padding: 10px 0;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
+ /* Menu row styling */
+ .menu-row {
+     display: flex;
+     justify-content: space-around;
+     background-color: #022A73;
+     /* Example background color for the menu row */
+     padding: 10px 0;
+     margin-bottom: 20px;
+     border-radius: 5px;
+ }
 
-.menu-item {
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-}
+ .menu-item {
+     background-color: transparent;
+     border: none;
+     color: white;
+     font-size: 16px;
+     cursor: pointer;
+     padding: 10px 20px;
+     transition: background-color 0.3s ease;
+ }
 
-.menu-item:hover {
-    background-color: #0056b3;
-    /* Darker shade for hover effect */
-}
+ .menu-item:hover {
+     background-color: #0056b3;
+     /* Darker shade for hover effect */
+ }
 
-.menu-item.selected {
-    background-color: #0056b3;
-    /* Highlight selected item */
-}
+ .menu-item.selected {
+     background-color: #0056b3;
+     /* Highlight selected item */
+ }
 
-/* Form row styling */
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
-}
+ /* Form row styling */
+ .form-row {
+     display: flex;
+     justify-content: space-between;
+     gap: 15px;
+     margin-bottom: 20px;
+ }
 
-/* Form group styling */
-.form-group {
-    flex: 1;
-}
+ /* Form group styling */
+ .form-group {
+     flex: 1;
+ }
 
-/* Label styling */
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #004d40;
-}
+ /* Label styling */
+ .form-group label {
+     display: block;
+     margin-bottom: 5px;
+     font-weight: bold;
+     color: #004d40;
+ }
 
-/* Input styling */
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #004d40;
-    border-radius: 5px;
-    background-color: #e0f2f1;
-    color: #004d40;
-}
+ /* Input styling */
+ .form-group input {
+     width: 100%;
+     padding: 12px;
+     border: 1px solid #004d40;
+     border-radius: 5px;
+     background-color: #e0f2f1;
+     color: #004d40;
+ }
 
-/* Checkbox styling */
-.form-group input[type="checkbox"] {
-    width: auto;
-}
+ /* Checkbox styling */
+ .form-group input[type="checkbox"] {
+     width: auto;
+ }
 
-/* Passengers input box size */
-.form-group input#passengers {
-    width: 80px;
-    padding: 12px;
-}
+ /* Passengers input box size */
+ .form-group input#passengers {
+     width: 80px;
+     padding: 12px;
+ }
 
-/* Checkbox label styling */
-.form-group .checkbox-label {
-    font-weight: normal;
-}
+ /* Checkbox label styling */
+ .form-group .checkbox-label {
+     font-weight: normal;
+ }
 
-/* Submit button styling */
-.submit-btn {
-    padding: 12px 25px;
-    background-color: #00796b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-}
+ /* Submit button styling */
+ .submit-btn {
+     padding: 12px 25px;
+     background-color: #00796b;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 16px;
+     position: absolute;
+     bottom: 30px;
+     right: 30px;
+ }
 
-/* Submit button hover effect */
-.submit-btn:hover {
-    background-color: #004d40;
-}
+ /* Submit button hover effect */
+ .submit-btn:hover {
+     background-color: #004d40;
+ }
 
-/* Additional options section styling */
-.additional-options {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-}
+ /* Additional options section styling */
+ .additional-options {
+     display: flex;
+     justify-content: space-between;
+     gap: 15px;
+ }
