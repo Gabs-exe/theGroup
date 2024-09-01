@@ -13,7 +13,7 @@
     <img src="logo.png" alt="Company Logo" class="logo">
     <div class="top-right">
       <button>Language</button>
-      <button>Sign In</button>
+      <button id="sign-in-btn">Sign In</button>
     </div>
   </div>
 
@@ -98,6 +98,36 @@
       </form>
     </div>
   </div>
-  <script src="js/home.js"></script>
+
+
+  <!-- New form for Sign Up -->
+<div id="sign-up-modal" style="display: none;">
+  <div id="sign-up-modal-content">
+    <div id="sign-up-modal-header">
+      <h2>Sign Up</h2>
+      <span id="sign-up-modal-close">&times;</span>
+    </div>
+    <form id="sign-up-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address or Business Number:</label>
+          <input type="text" id="email" name="email" placeholder="Enter your Email/Business Number" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <div class="checkbox-container">
+            <input type="checkbox" id="show-password" name="show-password">
+            <label for="show-password" class="checkbox-label">Show Password</label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Sign Up</button>
+    </form>
+  </div>
+</div>
+<script src="js/home.js"></script>
 </body>
 </html>

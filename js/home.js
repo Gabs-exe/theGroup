@@ -94,3 +94,47 @@ menuButtons.forEach(button => {
         }
     });
 });
+
+// Get the sign-in button and sign-up modal
+const signInBtn = document.getElementById('sign-in-btn');
+const signUpModal = document.getElementById('sign-up-modal');
+const signUpModalClose = document.getElementById('sign-up-modal-close');
+
+// Add an event listener to the sign-in button
+signInBtn.addEventListener('click', () => {
+    // Show the sign-up modal
+    signUpModal.style.display = 'block';
+
+    // Apply blur only to the container and top-strip, not the entire body
+    document.querySelector('.top-strip').classList.add('blur');
+    document.querySelector('.container').classList.add('blur');
+
+    // Focus on the sign-up form
+    document.getElementById('email').focus();
+});
+
+// Add an event listener to the sign-up modal close button
+signUpModalClose.addEventListener('click', () => {
+    // Hide the sign-up modal
+    signUpModal.style.display = 'none';
+
+    // Remove the blur from the container and top-strip
+    document.querySelector('.top-strip').classList.remove('blur');
+    document.querySelector('.container').classList.remove('blur');
+});
+
+// Get the password input and show-password checkbox
+const passwordInput = document.getElementById('password');
+const showPasswordCheckbox = document.getElementById('show-password');
+
+// Add an event listener to the show-password checkbox
+showPasswordCheckbox.addEventListener('change', () => {
+    // Toggle the type attribute between 'password' and 'text'
+    if (showPasswordCheckbox.checked) {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
+});
+
+
