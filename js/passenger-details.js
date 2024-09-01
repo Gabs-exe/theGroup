@@ -32,8 +32,8 @@ form.addEventListener('submit', function (event) {
     return;
   }
 
-  // Optionally: Send data to server or handle it as needed
-  console.log('Form data:', {
+  // Save passenger details to local storage
+  const passengerDetails = {
     title,
     firstName,
     lastName,
@@ -42,10 +42,16 @@ form.addEventListener('submit', function (event) {
     gender,
     countryCode,
     contactNumber,
-    email
-  });
+    email,
+    from: fromLocation,
+    to: toLocation,
+    flightId,
+    departDate,
+    returnDate,
+    passengers
+  };
+  localStorage.setItem('passengerDetails', JSON.stringify(passengerDetails));
 
-  // Redirect to a confirmation page or show a success message
-  // window.location.href = `confirmation.html?flight=${flightId}`;
-  alert('Passenger details submitted successfully!');
+  // Redirect to seat selection page
+  window.location.href = 'seat-selection.html';
 });

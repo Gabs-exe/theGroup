@@ -236,3 +236,66 @@ body {
   font-size: 24px;
   cursor: pointer;
 }
+
+#seat-map {
+  text-align: center;
+}
+
+#seat-map .row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+#seat-map .row .row-number {
+  width: 30px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+#seat-map .row .seat {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  margin: 2px;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+#seat-map .seat.selected-seat {
+  background-color: green;
+  color: white;
+}
+
+
+.column-header {
+  width: 40px;
+  margin-left: 1px;
+  text-align: center;
+  font-weight: bold; /* Make the column headers stand out */
+}
+
+.aisle-space {
+  width: 40px;
+}
+
+#selected-seats {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* New CSS to add alphabet column headers */
+.alphabet-header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+
+.alphabet-column {
+  width: 40px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
