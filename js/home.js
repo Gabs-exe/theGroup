@@ -137,4 +137,20 @@ showPasswordCheckbox.addEventListener('change', () => {
     }
 });
 
+document.getElementById('book-flight-form').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent the form from submitting normally
+
+  // Get form data
+  const fromLocation = document.getElementById('from-location').value;
+  const toLocation = document.getElementById('to-location').value;
+  const departDate = document.getElementById('depart-date').value;
+  const returnDate = document.getElementById('return-date').value;
+  const passengers = document.getElementById('passengers').value;
+
+  // Create a query string
+  const queryString = `from=${encodeURIComponent(fromLocation)}&to=${encodeURIComponent(toLocation)}&depart=${encodeURIComponent(departDate)}&return=${encodeURIComponent(returnDate)}&passengers=${encodeURIComponent(passengers)}`;
+
+  // Redirect to results page with the query string
+  window.location.href = `results.html?${queryString}`;
+});
 
