@@ -1,0 +1,28 @@
+{
+    "route": [
+        {
+            "from": "Sydney",
+            "to": ["Melbourne", "Brisbane", "Perth", "Auckland", "Wellington"]
+        },
+        {
+            "from": "Melbourne",
+            "to": ["Sydney", "Brisbane", "Perth", "Auckland", "Wellington"]
+        },
+        {
+            "from": "Brisbane",
+            "to": ["Sydney", "Melbourne", "Perth", "Auckland", "Wellington"]
+        },
+        {
+            "from": "Perth",
+            "to": ["Sydney", "Melbourne", "Brisbane", "Auckland", "Wellington"]
+        },
+        {
+            "from": "Auckland",
+            "to": ["Sydney", "Melbourne", "Brisbane", "Perth", "Wellington"]
+        },
+        {
+            "from": "Wellington",
+            "to": ["Sydney", "Melbourne", "Brisbane", "Perth", "Auckland"]
+        }
+    ]
+}

@@ -1,10 +1,12 @@
-// Parse query parameters from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const fromLocation = urlParams.get('from');
-const toLocation = urlParams.get('to');
-const departDate = urlParams.get('depart');
-const returnDate = urlParams.get('return');
-const passengers = urlParams.get('passengers');
+// Parse query parameters from sessionStorage
+const flightInfo = JSON.parse(sessionStorage.getItem('flightInfo'));
+console.log(flightInfo);
+
+const fromLocation = flightInfo.fromLocation;
+const toLocation = flightInfo.toLocation;
+const departDate = flightInfo.departDate;
+const returnDate = flightInfo.returnDate;
+const passengers = flightInfo.passengers;
 
 // Display the results based on user input
 const resultsDiv = document.getElementById('results');

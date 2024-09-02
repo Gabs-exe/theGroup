@@ -1,73 +1,18 @@
-// Load locations from a text file
-fetch('js/locations.txt')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.text();
-    })
-
+// Clear localStorage + sessionStorage then initialise the content
+localStorage.clear(); // legacy workaround. Use sessionStorage for instance purposes
+sessionStorage.clear();
+fetch('js/flightdata.json')
+    .then(response => response.json())
     .then(data => {
-        const locations = data.split('\n').map(item => item.trim());
-        initAutocomplete('from-location', locations);
-        initAutocomplete('to-location', locations);
+        // test output for the data
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error: ', error);
     });
-
-// Initialize autocomplete function
-function initAutocomplete(inputId, locations) {
-    const input = document.getElementById(inputId);
-    input.addEventListener('input', function () {
-        const suggestions = locations.filter(location =>
-            location.toLowerCase().startsWith(this.value.toLowerCase())
-        );
-        showSuggestions(this, suggestions);
-    });
-}
-
-// Show suggestions under the input field
-function showSuggestions(input, suggestions) {
-    const list = document.createElement('ul');
-    list.style.position = 'absolute';
-    list.style.backgroundColor = 'white';
-    list.style.border = '1px solid #ccc';
-    list.style.maxHeight = '150px';
-    list.style.overflowY = 'auto';
-    list.style.width = input.offsetWidth + 'px';
-    list.style.marginTop = '0';
-    list.style.paddingLeft = '10px';
-
-    suggestions.forEach(suggestion => {
-        const listItem = document.createElement('li');
-        listItem.textContent = suggestion;
-        listItem.style.padding = '5px';
-        listItem.style.cursor = 'pointer';
-        listItem.addEventListener('click', function () {
-            input.value = this.textContent;
-            list.innerHTML = '';
-        });
-        list.appendChild(listItem);
-    });
-
-    clearSuggestions();
-    input.parentNode.appendChild(list);
-}
-
-// Clear suggestions
-function clearSuggestions() {
-    const oldList = document.querySelector('ul');
-    if (oldList) oldList.remove();
-}
-
-document.addEventListener('click', function (e) {
-    if (!e.target.matches('input')) {
-        clearSuggestions();
-    }
-});
-
-// Get all menu buttons
-const menuButtons = document.querySelectorAll('.menu-item');
 
 // Add event listener to each menu button
+const menuButtons = document.querySelectorAll('.menu-item');
 menuButtons.forEach(button => {
     button.addEventListener('click', () => {
         // Remove selected class from all buttons
@@ -138,19 +83,19 @@ showPasswordCheckbox.addEventListener('change', () => {
 });
 
 document.getElementById('book-flight-form').addEventListener('submit', function (event) {
-  event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault(); // Prevent the form from submitting normally
 
-  // Get form data
-  const fromLocation = document.getElementById('from-location').value;
-  const toLocation = document.getElementById('to-location').value;
-  const departDate = document.getElementById('depart-date').value;
-  const returnDate = document.getElementById('return-date').value;
-  const passengers = document.getElementById('passengers').value;
+    // Get form data
+    const fromLocation = document.getElementById('from-location').value;
+    const toLocation = document.getElementById('to-location').value;
+    const departDate = document.getElementById('depart-date').value;
+    const returnDate = document.getElementById('return-date').value;
+    const passengers = document.getElementById('passengers').value;
 
-  // Create a query string
-  const queryString = `from=${encodeURIComponent(fromLocation)}&to=${encodeURIComponent(toLocation)}&depart=${encodeURIComponent(departDate)}&return=${encodeURIComponent(returnDate)}&passengers=${encodeURIComponent(passengers)}`;
+    // save form data to sessionStorage
+    sessionStorage.setItem('flightInfo', JSON.stringify({fromLocation, toLocation, departDate, returnDate, passengers}));
 
-  // Redirect to results page with the query string
-  window.location.href = `results.html?${queryString}`;
+    // Redirect to results page 
+    window.location.href = `results.html`;
 });
 
