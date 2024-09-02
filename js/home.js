@@ -94,3 +94,63 @@ menuButtons.forEach(button => {
         }
     });
 });
+
+// Get the sign-in button and sign-up modal
+const signInBtn = document.getElementById('sign-in-btn');
+const signUpModal = document.getElementById('sign-up-modal');
+const signUpModalClose = document.getElementById('sign-up-modal-close');
+
+// Add an event listener to the sign-in button
+signInBtn.addEventListener('click', () => {
+    // Show the sign-up modal
+    signUpModal.style.display = 'block';
+
+    // Apply blur only to the container and top-strip, not the entire body
+    document.querySelector('.top-strip').classList.add('blur');
+    document.querySelector('.container').classList.add('blur');
+
+    // Focus on the sign-up form
+    document.getElementById('email').focus();
+});
+
+// Add an event listener to the sign-up modal close button
+signUpModalClose.addEventListener('click', () => {
+    // Hide the sign-up modal
+    signUpModal.style.display = 'none';
+
+    // Remove the blur from the container and top-strip
+    document.querySelector('.top-strip').classList.remove('blur');
+    document.querySelector('.container').classList.remove('blur');
+});
+
+// Get the password input and show-password checkbox
+const passwordInput = document.getElementById('password');
+const showPasswordCheckbox = document.getElementById('show-password');
+
+// Add an event listener to the show-password checkbox
+showPasswordCheckbox.addEventListener('change', () => {
+    // Toggle the type attribute between 'password' and 'text'
+    if (showPasswordCheckbox.checked) {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
+});
+
+document.getElementById('book-flight-form').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent the form from submitting normally
+
+  // Get form data
+  const fromLocation = document.getElementById('from-location').value;
+  const toLocation = document.getElementById('to-location').value;
+  const departDate = document.getElementById('depart-date').value;
+  const returnDate = document.getElementById('return-date').value;
+  const passengers = document.getElementById('passengers').value;
+
+  // Create a query string
+  const queryString = `from=${encodeURIComponent(fromLocation)}&to=${encodeURIComponent(toLocation)}&depart=${encodeURIComponent(departDate)}&return=${encodeURIComponent(returnDate)}&passengers=${encodeURIComponent(passengers)}`;
+
+  // Redirect to results page with the query string
+  window.location.href = `results.html?${queryString}`;
+});
+

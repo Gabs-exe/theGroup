@@ -141,15 +141,15 @@
      color: #004d40;
  }
 
- /* Input styling */
- .form-group input {
-     width: 100%;
-     padding: 12px;
-     border: 1px solid #004d40;
-     border-radius: 5px;
-     background-color: #e0f2f1;
-     color: #004d40;
- }
+/* Input styling */
+.form-group input {
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #004d40;
+    border-radius: 5px;
+    background-color: #e0f2f1;
+    color: #004d40;
+}
 
  /* Checkbox styling */
  .form-group input[type="checkbox"] {
@@ -186,9 +186,115 @@
      background-color: #004d40;
  }
 
- /* Additional options section styling */
- .additional-options {
-     display: flex;
-     justify-content: space-between;
-     gap: 15px;
- }
+/* Additional options section styling */
+.additional-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Modal background */
+#sign-up-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 10000; /* Increased z-index */
+}
+
+/* Modal content */
+#sign-up-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  z-index: 10001; /* Ensure this is on top of the blurred background */
+}
+
+.blur {
+  filter: blur(5px);
+  z-index: 9999; /* Ensure it's behind the modal */
+}
+
+#sign-up-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#sign-up-modal-close {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#seat-map {
+  text-align: center;
+}
+
+#seat-map .row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+#seat-map .row .row-number {
+  width: 30px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+#seat-map .row .seat {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  margin: 2px;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+#seat-map .seat.selected-seat {
+  background-color: green;
+  color: white;
+}
+
+
+.column-header {
+  width: 40px;
+  margin-left: 1px;
+  text-align: center;
+  font-weight: bold; /* Make the column headers stand out */
+}
+
+.aisle-space {
+  width: 40px;
+}
+
+#selected-seats {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* New CSS to add alphabet column headers */
+.alphabet-header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+
+.alphabet-column {
+  width: 40px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
