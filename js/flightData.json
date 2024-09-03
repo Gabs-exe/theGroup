@@ -2,27 +2,195 @@
     "route": [
         {
             "from": "Sydney",
-            "to": ["Melbourne", "Brisbane", "Perth", "Auckland", "Wellington"]
+            "to": [
+                {
+                    "destination": "Melbourne",
+                    "planeType": "Airbus A320",
+                    "timings": [930, 1100, 1300, 1530, 1700],
+                    "duration": 90,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Brisbane",
+                    "planeType": "Boeing 787",
+                    "timings": [1100, 1700],
+                    "duration": 75,
+                    "maxCapacity": 250
+                },
+                {
+                    "destination": "Perth",
+                    "planeType": "Airbus A320",
+                    "timings": [900, 1500, 2100],
+                    "duration": 210,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Auckland",
+                    "planeType": "Boeing 787",
+                    "timings": [1100, 1700],
+                    "duration": 120,
+                    "maxCapacity": 250
+                },
+                {
+                    "destination": "Wellington",
+                    "planeType": "Airbus A320",
+                    "timings": 1200,
+                    "duration": 175,
+                    "maxCapacity": 180
+                }
+            ]
         },
         {
             "from": "Melbourne",
-            "to": ["Sydney", "Brisbane", "Perth", "Auckland", "Wellington"]
+            "to": [
+                {
+                    "destination": "Sydney",
+                    "planeType": "Airbus A320",
+                    "timings": [730, 900, 1100, 1330, 1300],
+                    "duration": 90,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Brisbane",
+                    "planeType": "Boeing 787",
+                    "timings": [1030, 1430],
+                    "duration": 150,
+                    "maxCapacity": 250
+                },
+                {
+                    "destination": "Perth",
+                    "planeType": "Airbus A320",
+                    "timings": [900, 1125, 1300, 1630],
+                    "duration": 150,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Auckland",
+                    "planeType": "Boeing 787",
+                    "timings": [1530, 2000],
+                    "duration": 150,
+                    "maxCapacity": 250
+                },
+                {
+                    "destination": "Wellington",
+                    "planeType": "Airbus A320",
+                    "timings": 1700,
+                    "duration": 215,
+                    "maxCapacity": 180
+                }
+            ]
         },
         {
             "from": "Brisbane",
-            "to": ["Sydney", "Melbourne", "Perth", "Auckland", "Wellington"]
+            "to": [
+                {
+                    "destination": "Sydney",
+                    "planeType": "Airbus A320",
+                    "timings": [930, 1200],
+                    "duration": 150,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Melbourne",
+                    "planeType": "Boeing 787",
+                    "timings": [1100, 1330],
+                    "duration": 150,
+                    "maxCapacity": 250
+                },
+                {
+                    "destination": "Perth",
+                    "planeType": "Airbus A320",
+                    "timings": [1300, 1630],
+                    "duration": 210,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Auckland",
+                    "planeType": "Boeing 787",
+                    "timings": 1530,
+                    "duration": 150,
+                    "maxCapacity": 250
+                }
+            ]
         },
         {
             "from": "Perth",
-            "to": ["Sydney", "Melbourne", "Brisbane", "Auckland", "Wellington"]
+            "to": [
+                {
+                    "destination": "Sydney",
+                    "planeType": "Airbus A320",
+                    "timings": [930, 1200],
+                    "duration": 150,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Melbourne",
+                    "planeType": "Boeing 787",
+                    "timings": [1100, 1330],
+                    "duration": 150,
+                    "maxCapacity": 250
+                },
+                {
+                    "destination": "Brisbane",
+                    "planeType": "Airbus A320",
+                    "timings": [1300, 1630],
+                    "duration": 210,
+                    "maxCapacity": 180
+                }
+            ]
         },
         {
             "from": "Auckland",
-            "to": ["Sydney", "Melbourne", "Brisbane", "Perth", "Wellington"]
+            "to": [
+                {
+                    "destination": "Sydney",
+                    "planeType": "Airbus A320",
+                    "timings": [930, 1200],
+                    "duration": 150,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Melbourne",
+                    "planeType": "Boeing 787",
+                    "timings": [1100, 1330],
+                    "duration": 150,
+                    "maxCapacity": 250
+                },
+                {
+                    "destination": "Wellington",
+                    "planeType": "Airbus A320",
+                    "timings": [1700, 1930],
+                    "duration": 150,
+                    "maxCapacity": 180
+                }
+            ]
         },
         {
             "from": "Wellington",
-            "to": ["Sydney", "Melbourne", "Brisbane", "Perth", "Auckland"]
+            "to": [
+                {
+                    "destination": "Sydney",
+                    "planeType": "Airbus A320",
+                    "timings": [930, 1200],
+                    "duration": 150,
+                    "maxCapacity": 180
+                },
+                {
+                    "destination": "Melbourne",
+                    "planeType": "Boeing 787",
+                    "timings": [1100, 1330],
+                    "duration": 150,
+                    "maxCapacity": 250
+                },
+                {
+                    "destination": "Auckland",
+                    "planeType": "Airbus A320",
+                    "timings": [1700, 1930],
+                    "duration": 150,
+                    "maxCapacity": 180
+                }
+            ]
         }
+
     ]
 }
