@@ -1,11 +1,14 @@
 // Clear localStorage + sessionStorage then initialise the content
 localStorage.clear(); // legacy workaround. Use sessionStorage for instance purposes
 sessionStorage.clear();
+let flightData;
+
 fetch('js/flightdata.json')
     .then(response => response.json())
     .then(data => {
+        flightData = data;
         // test output for the data
-        console.log(data);
+        console.log(flightData);
     })
     .catch(error => {
         console.error('Error: ', error);
