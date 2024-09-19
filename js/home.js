@@ -1,18 +1,15 @@
 // Clear localStorage + sessionStorage then initialise the content
 localStorage.clear(); // legacy workaround. Use sessionStorage for instance purposes
 sessionStorage.clear();
-let flightData;
 
-fetch('js/flightdata.json')
-    .then(response => response.json())
-    .then(data => {
-        flightData = data;
-        // test output for the data
-        console.log(flightData);
-    })
-    .catch(error => {
-        console.error('Error: ', error);
-    });
+let flightData = fetchFlightData();
+async function fetchFlightData() {
+    const response = await fetch('js/flightdata.json');
+    console.log(response.json().JSON);
+    return response.json();
+}
+
+// console.log(flightData);
 
 // Add event listener to each menu button
 const menuButtons = document.querySelectorAll('.menu-item');
@@ -96,7 +93,7 @@ document.getElementById('book-flight-form').addEventListener('submit', function 
     const passengers = document.getElementById('passengers').value;
 
     // save form data to sessionStorage
-    sessionStorage.setItem('flightInfo', JSON.stringify({fromLocation, toLocation, departDate, returnDate, passengers}));
+    sessionStorage.setItem('flightInfo', JSON.stringify({ fromLocation, toLocation, departDate, returnDate, passengers }));
 
     // Redirect to results page 
     window.location.href = `results.html`;
