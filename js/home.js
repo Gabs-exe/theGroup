@@ -2,14 +2,15 @@
 localStorage.clear(); // legacy workaround. Use sessionStorage for instance purposes
 sessionStorage.clear();
 
-let flightData = fetchFlightData();
-async function fetchFlightData() {
-    const response = await fetch('js/flightdata.json');
-    console.log(response.json().JSON);
-    return response.json();
-}
+// async function fetchFlightData() {
+//     const response = await fetch('js/flightdata.json');
+//     console.log(response.json().catch());
+//     return response.json().then(data => data);
+// }
+// let flightData = fetchFlightData();
 
-// console.log(flightData);
+let flightData = fetch('js/flightdata.json').then(response => response.json()).then(data => data);
+console.log(flightData);
 
 // Add event listener to each menu button
 const menuButtons = document.querySelectorAll('.menu-item');
