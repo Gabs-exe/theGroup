@@ -10,10 +10,11 @@ async function fetchFlightData() {
 }
 const flightData = fetchFlightData();
 
-const routeSelect = document.getElementById('from-location');
-routeSelect.forEach(button => {
-    button.addEventListener('click', () => {
-        console.log('clicked');
+const routeSelectFrom = document.getElementById('from-location');
+const routeSelectTo = document.getElementById('to-location');
+routeSelectFrom.addEventListener('change', () => {
+    flightData.then(data => {
+        console.log(data.list.find(x => x.from === routeSelectFrom.value));
     });
 });
 
