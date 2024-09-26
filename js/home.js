@@ -5,7 +5,7 @@ sessionStorage.clear();
 async function fetchFlightData() {
     const response = await fetch('js/flightdata.json');
     let object = await response.json();
-    console.log(object.route[1].to[1]) //something like this
+    // console.log(object.route[1].to[1]) //testing
     return object;
 }
 const flightData = fetchFlightData();
@@ -19,6 +19,7 @@ routeSelectFrom.addEventListener('change', () => {
             option.hidden = true;
         }
 
+        // Show only the destinations that are available from the selected origin
         for (let from in data.route[routeSelectFrom.value].to) {
             console.log(data.route[routeSelectFrom.value].to[from].destination);
             for (let selected in routeSelectTo.options) {
@@ -30,6 +31,54 @@ routeSelectFrom.addEventListener('change', () => {
     });
 });
 
+const departDateInput = document.getElementById('depart-date');
+const returnDateInput = document.getElementById('return-date');
+
+var timer;
+var timerCountdown = 1250;
+// Set the default date to today
+departDateInput.valueAsDate = new Date();
+
+departDateInput.addEventListener('change', () => {
+    const departDate = new Date(departDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        if (departDateInput.value < new Date().toISOString().split('T')[0]) {
+            alert('Departure date must be today or later.');
+        }
+
+        if (departDate > returnDate) {
+            alert('Departure date cannot be after return date.');
+        }
+    }, timerCountdown);
+});
+
+returnDateInput.addEventListener('change', () => {
+    const departDate = new Date(departDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        if (departDate > returnDate) {
+            alert('Departure date cannot be after return date.');
+        }
+    }, timerCountdown);
+});
+
+// Disable the return date input if the one-way checkbox is checked
+const oneWayCheckbox = document.getElementById('one-way');
+oneWayCheckbox.addEventListener('change', () => {
+    if (oneWayCheckbox.checked) {
+        returnDateInput.disabled = true;
+        returnDateInput.value = '';
+        returnDateInput.classList.add('not-used');
+    } else {
+        returnDateInput.disabled = false;
+        returnDateInput.classList.remove('not-used');
+    }
+});
 // Add event listener to each menu button
 const menuButtons = document.querySelectorAll('.menu-item');
 menuButtons.forEach(button => {
@@ -110,6 +159,7 @@ document.getElementById('book-flight-form').addEventListener('submit', function 
     const departDate = document.getElementById('depart-date').value;
     const returnDate = document.getElementById('return-date').value;
     const passengers = document.getElementById('passengers').value;
+    const oneWayOrReturn = document.getElementById('one-way').value
 
     // save form data to sessionStorage
     sessionStorage.setItem('flightInfo', JSON.stringify({ fromLocation, toLocation, departDate, returnDate, passengers }));
