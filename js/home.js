@@ -69,7 +69,10 @@ returnDateInput.addEventListener('change', () => {
 
 // Disable the return date input if the one-way checkbox is checked
 const oneWayCheckbox = document.getElementById('one-way');
-oneWayCheckbox.addEventListener('change', () => {
+oneWayCheckbox.addEventListener('change', () => {checkState()});
+
+function checkState() { 
+    console.log('checkState');
     if (oneWayCheckbox.checked) {
         returnDateInput.disabled = true;
         returnDateInput.value = '';
@@ -78,7 +81,16 @@ oneWayCheckbox.addEventListener('change', () => {
         returnDateInput.disabled = false;
         returnDateInput.classList.remove('not-used');
     }
+}
+
+// Call checkState on page load to ensure the correct state is set
+window.addEventListener('pageshow', () => {
+    checkState();
 });
+
+// Also call checkState immediately to handle the initial load
+checkState();
+
 // Add event listener to each menu button
 const menuButtons = document.querySelectorAll('.menu-item');
 menuButtons.forEach(button => {
@@ -159,10 +171,10 @@ document.getElementById('book-flight-form').addEventListener('submit', function 
     const departDate = document.getElementById('depart-date').value;
     const returnDate = document.getElementById('return-date').value;
     const passengers = document.getElementById('passengers').value;
-    const oneWayOrReturn = document.getElementById('one-way').value
+    const oneWayOrReturn = document.getElementById('one-way').checked;
 
     // save form data to sessionStorage
-    sessionStorage.setItem('flightInfo', JSON.stringify({ fromLocation, toLocation, departDate, returnDate, passengers }));
+    sessionStorage.setItem('flightInfo', JSON.stringify({ fromLocation, toLocation, departDate, returnDate, passengers, oneWayOrReturn }));
 
     // Redirect to results page 
     window.location.href = `results.html`;
