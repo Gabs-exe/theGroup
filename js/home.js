@@ -2,14 +2,97 @@
 localStorage.clear(); // legacy workaround. Use sessionStorage for instance purposes
 sessionStorage.clear();
 
-let flightData = fetchFlightData();
 async function fetchFlightData() {
     const response = await fetch('js/flightdata.json');
-    console.log(response.json().JSON);
-    return response.json();
+    let object = await response.json();
+    // console.log(object.route[1].to[1]) //testing
+    return object;
+}
+const flightData = fetchFlightData();
+
+const routeSelectFrom = document.getElementById('from-location');
+const routeSelectTo = document.getElementById('to-location');
+routeSelectFrom.addEventListener('change', () => {
+    flightData.then(data => {
+        // console.log(data.route[routeSelectFrom.value]);
+        for (let option of routeSelectTo.options) {
+            option.hidden = true;
+        }
+
+        // Show only the destinations that are available from the selected origin
+        for (let from in data.route[routeSelectFrom.value].to) {
+            console.log(data.route[routeSelectFrom.value].to[from].destination);
+            for (let selected in routeSelectTo.options) {
+                if (routeSelectTo.options[selected].value == data.route[routeSelectFrom.value].to[from].destination) {
+                    routeSelectTo.options[selected].hidden = false;
+                }
+            }
+        }
+    });
+});
+
+const departDateInput = document.getElementById('depart-date');
+const returnDateInput = document.getElementById('return-date');
+
+var timer;
+var timerCountdown = 1250;
+// Set the default date to today
+departDateInput.valueAsDate = new Date();
+departDateInput.min = new Date().toISOString().split('T')[0];
+returnDateInput.min = new Date().toISOString().split('T')[0];
+
+departDateInput.addEventListener('change', () => {
+    const departDate = new Date(departDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+    returnDateInput.min = departDate.toISOString().split('T')[0];
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        if (departDateInput.value < new Date().toISOString().split('T')[0]) {
+            alert('Departure date must be today or later.');
+        }
+
+        if (departDate > returnDate) {
+            alert('Departure date cannot be after return date.');
+        }
+    }, timerCountdown);
+});
+
+returnDateInput.addEventListener('change', () => {
+    const departDate = new Date(departDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+    returnDateInput.min = departDate.toISOString().split('T')[0];
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        if (departDate > returnDate) {
+            alert('Departure date cannot be after return date.');
+        }
+    }, timerCountdown);
+});
+
+// Disable the return date input if the one-way checkbox is checked
+const oneWayCheckbox = document.getElementById('one-way');
+oneWayCheckbox.addEventListener('change', () => {checkState()});
+
+function checkState() { 
+    if (oneWayCheckbox.checked) {
+        returnDateInput.disabled = true;
+        returnDateInput.value = '';
+        returnDateInput.classList.add('not-used');
+    } else {
+        returnDateInput.disabled = false;
+        returnDateInput.classList.remove('not-used');
+    }
 }
 
-// console.log(flightData);
+// Call checkState on page load to ensure the correct state is set
+window.addEventListener('pageshow', () => {
+    checkState();
+});
+
+// Also call checkState immediately to handle the initial load
+checkState();
 
 // Add event listener to each menu button
 const menuButtons = document.querySelectorAll('.menu-item');
@@ -82,20 +165,32 @@ showPasswordCheckbox.addEventListener('change', () => {
     }
 });
 
+
 document.getElementById('book-flight-form').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent the form from submitting normally
 
     // Get form data
-    const fromLocation = document.getElementById('from-location').value;
+    const fromLocation = document.getElementById('from-location').selectedOptions[0].getAttribute('data-alt');
     const toLocation = document.getElementById('to-location').value;
     const departDate = document.getElementById('depart-date').value;
     const returnDate = document.getElementById('return-date').value;
     const passengers = document.getElementById('passengers').value;
+    const oneWayOrReturn = document.getElementById('one-way').checked;
+
+    // Validate the values from the form (check date validity)
+    const departDateCheck = new Date(departDateInput.value);
+    const returnDateCheck = new Date(returnDateInput.value);
+
+    console.log(fromLocation, toLocation);
+    if (returnDateCheck < departDateCheck) {
+        alert('Departure date cannot be after return date.');
+        return;
+    }
 
     // save form data to sessionStorage
-    sessionStorage.setItem('flightInfo', JSON.stringify({ fromLocation, toLocation, departDate, returnDate, passengers }));
+    sessionStorage.setItem('flightInfo', JSON.stringify({ fromLocation, toLocation, departDate, returnDate, passengers, oneWayOrReturn }));
 
     // Redirect to results page 
-    window.location.href = `results.html`;
+    window.location.href = `flight-selection.html`;
 });
 
