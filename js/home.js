@@ -5,7 +5,7 @@ sessionStorage.clear();
 async function fetchFlightData() {
     const response = await fetch('js/flightdata.json');
     let object = await response.json();
-    console.log(object);
+    console.log(object.route[1].to[1]) //something like this
     return object;
 }
 const flightData = fetchFlightData();
@@ -14,7 +14,19 @@ const routeSelectFrom = document.getElementById('from-location');
 const routeSelectTo = document.getElementById('to-location');
 routeSelectFrom.addEventListener('change', () => {
     flightData.then(data => {
-        console.log(data.list.find(x => x.from === routeSelectFrom.value));
+        console.log(data.route[routeSelectFrom.value]);
+        for (let option of routeSelectTo.options) {
+            option.hidden = true;
+        }
+
+        for (let from in data.route[routeSelectFrom.value].to) {
+            console.log(data.route[routeSelectFrom.value].to[from].destination);
+            for (let selected in routeSelectTo.options) {
+                if (routeSelectTo.options[selected].value == data.route[routeSelectFrom.value].to[from].destination) {
+                    routeSelectTo.options[selected].hidden = false;
+                }
+            }
+        }
     });
 });
 
