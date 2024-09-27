@@ -91,9 +91,6 @@ window.addEventListener('pageshow', () => {
     checkState();
 });
 
-// Also call checkState immediately to handle the initial load
-checkState();
-
 // Add event listener to each menu button
 const menuButtons = document.querySelectorAll('.menu-item');
 menuButtons.forEach(button => {
