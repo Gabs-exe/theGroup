@@ -16,7 +16,12 @@ async function fetchFlightData() {
 const flightData = fetchFlightData();
 
 const routeSelectFrom = document.getElementById('from-location');
-routeSelectFrom.value = fromLocation;
+for (let option of routeSelectFrom.options) {
+    if (option.getAttribute('data-alt') === fromLocation) {
+        option.selected = true;
+        break;
+    }
+}
 const routeSelectTo = document.getElementById('to-location');
 routeSelectTo.value = toLocation;
 routeSelectFrom.addEventListener('change', () => {
@@ -97,6 +102,33 @@ function checkState() {
 window.addEventListener('pageshow', () => {
     checkState();
 });
+
+window.onload = function() {
+    // Perform any actions needed on page load
+    console.log('Page has fully loaded');
+    // Example: Populate flight list or any other initialization
+    flightData.then(data => {
+        const flightSelectDiv = document.getElementById('flight-select');
+        data.route[fromLocation].forEach(flight => {
+            const flightInfoDiv = document.createElement('div');
+            flightInfoDiv.classList.add('flight-info');
+
+            const airlineInfo = document.createElement('p');
+            airlineInfo.textContent = `${flight.airline} - ${flight.flightNumber}`;
+            flightInfoDiv.appendChild(airlineInfo);
+
+            const departureTime = document.createElement('p');
+            departureTime.textContent = `Departure: ${flight.departureTime}`;
+            flightInfoDiv.appendChild(departureTime);
+
+            const returnTime = document.createElement('p');
+            returnTime.textContent = `Return: ${flight.returnTime}`;
+            flightInfoDiv.appendChild(returnTime);
+
+            flightSelectDiv.appendChild(flightInfoDiv);
+        });
+    });
+};
 
 // Add event listener to handle flight selection
 document.getElementById('flight-list').addEventListener('click', function (event) {
