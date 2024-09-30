@@ -15,7 +15,7 @@
  .navbar {
      width: 100%;
      height: 75px;
-     background-color: #F99F1C;
+     background-color: white;
      position: fixed;
      top: 0;
      left: 0;
@@ -46,25 +46,27 @@
  /* Buttons styling */
  .top-right button {
      padding: 8px 15px;
-     background-color: #F99F1C;
-     color: white;
+     background-color: white;
+     color: black;
      border: none;
-     border-radius: 5px;
+     
      cursor: pointer;
      font-size: 14px;
  }
 
  /* Button hover effect */
  .top-right button:hover {
-     background-color: #00332c;
+     text-emphasis-color: #00332c;
  }
 
  /* Section for the colored strip */
  .color-strip {
      width: 100%;
      height: 300px;
-     background-color: #032B73;
-     position: fixed;
+     background-image: url('flight-card-bg.png'); /* Replace with your image path */
+     background-size: cover; /* Ensure image covers the entire area */
+     background-position: center; /* Center the image */
+     position: sticky;
      top: 75px;
      /* Positioned right below the top-strip */
      left: 0;
@@ -74,14 +76,14 @@
 
  /* Container styling */
  .container {
-     background-color: white;
-     padding: 40px;
-     border-radius: 15px;
+     background-color: #ECF0F1;
+    
+     
      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-     max-width: 800px;
-     width: 90%;
+     width: 850px;
+     height: 350px;
      position: relative;
-     border: 2px solid #004d40;
+     
      margin-top: 120px;
      /* Adjusted to overlap with the color strip */
      z-index: 1000;
@@ -91,21 +93,23 @@
  /* Menu row styling */
  .menu-row {
      display: flex;
-     justify-content: space-around;
-     background-color: #022A73;
+     justify-content:center;
+     background-color: #2C3E50;
      /* Example background color for the menu row */
-     padding: 10px 0;
+     
      margin-bottom: 20px;
-     border-radius: 5px;
+
  }
 
  .menu-item {
      background-color: transparent;
-     border: none;
+     
+     height: 50px;
+     width: 200px;
      color: white;
      font-size: 16px;
      cursor: pointer;
-     padding: 10px 20px;
+ 
      transition: background-color 0.3s ease;
  }
 
@@ -115,14 +119,16 @@
  }
 
  .menu-item.selected {
-     background-color: #0056b3;
+     background-color: #ECF0F1;
+     color: #2C3E50;
      /* Highlight selected item */
  }
 
  /* Form row styling */
  .form-row {
      display: flex;
-     justify-content: space-between;
+     justify-content: space-around;
+     
      gap: 15px;
      margin-bottom: 20px;
  }
@@ -145,7 +151,7 @@
     width: 60%;
     padding: 12px;
     border: 1px solid #004d40;
-    border-radius: 5px;
+   
     background-color: #e0f2f1;
     color: #004d40;
 }
@@ -172,7 +178,7 @@
      background-color: #00796b;
      color: white;
      border: none;
-     border-radius: 5px;
+     
      cursor: pointer;
      font-size: 16px;
      position: absolute;
@@ -186,7 +192,7 @@
 
  /* Submit button hover effect */
  .submit-btn:hover {
-     background-color: #004d40;
+     background-color: white;
  }
 
 /* Additional options section styling */
@@ -306,7 +312,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
 }
 
 h1 {
@@ -372,7 +378,7 @@ button {
   color: #fff;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  
   cursor: pointer;
 }
 
@@ -430,16 +436,16 @@ h1, h2 {
 /* Input styling */
 .form-group input {
   padding: 12px;
-  border: 1px solid #004d40;
-  border-radius: 5px;
-  background-color: #e0f2f1;
-  color: #004d40;
+  border: 1px solid black;
+  
+  background-color: white;
+  color: #2C3E50;
 }
 
 /* Button styling */
 .submit-btn {
   padding: 15px 30px;
-  background-color: #00796b;
+  background-color: #27AE60;
   color: white;
   border: none;
   border-radius: 5px;
@@ -473,3 +479,68 @@ h1, h2 {
   line-height: 1.5;
 }
 
+/* Destination search section */
+.destination-search {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.search-bar button {
+  padding: 10px 15px;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Destination cards */
+.destination-cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.destination-card {
+  width: 300px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.destination-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.destination-info {
+  margin-top: 10px;
+}
+
+.destination-info h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.destination-info p {
+  font-size: 14px;
+  color: #666;
+}
