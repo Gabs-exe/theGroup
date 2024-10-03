@@ -16,7 +16,7 @@
      width: 100%;
      height: 75px;
      background-color: white;
-     position: fixed;
+     position: absolute;
      top: 0;
      left: 0;
      z-index: 1000;
@@ -66,7 +66,7 @@
      background-image: url('flight-card-bg.png'); /* Replace with your image path */
      background-size: cover; /* Ensure image covers the entire area */
      background-position: center; /* Center the image */
-     position: sticky;
+     position: absolute;
      top: 75px;
      /* Positioned right below the top-strip */
      left: 0;
@@ -159,6 +159,7 @@
  /* Checkbox styling */
  .form-group input[type="checkbox"] {
      width: auto;
+     align-self: flex-end;
  }
 
  /* Passengers input box size */
@@ -170,6 +171,8 @@
  /* Checkbox label styling */
  .form-group .checkbox-label {
      font-weight: normal;
+     margin-left: 250px;
+     
  }
 
  /* Submit button styling */
@@ -448,13 +451,13 @@ h1, h2 {
   background-color: #27AE60;
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
   display: block;
-  width: 100%;
+  width: 200px;
   max-width: 300px;
   margin: 30px auto 0;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -502,7 +505,7 @@ h1, h2 {
 
 .search-bar button {
   padding: 10px 15px;
-  background-color: #00796b;
+  background-color: #27AE60;
   color: white;
   border: none;
   border-radius: 5px;

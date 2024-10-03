@@ -32,8 +32,8 @@
         <label>Where shall we go today?</label>
       </div>
       <div class="form-group" style="float: right; background-color: #ECF0F1;">
-        <input type="checkbox" id="one-way" name="one-way">
         <label for="one-way" class="checkbox-label">One-way</label>
+        <input type="checkbox" id="one-way" name="one-way">
       </div>
     </div>
 
@@ -71,19 +71,19 @@
       </optgroup>
     </select>
   </div>
-  <div class="form-group" style="width: 25%; padding: 10px;">
+  <div class="form-group" style="width: initial; padding: 10px;">
     <label for="depart-date" style="font-size: 16px; color: #2C3E50;">Depart Date:</label>
-    <input type="date" id="depart-date" name="depart-date" required style="width: 100%; padding: 10px; font-size: 16px;">
+    <input type="date" id="depart-date" name="depart-date" required style="width: initial; padding: 10px; font-size: 16px;">
   </div>
-  <div class="form-group" style="width: 25%; padding: 10px;">
+  <div class="form-group" style="width: initial; padding: 10px;">
     <label for="return-date" style="font-size: 16px; color: #2C3E50;">Return Date:</label>
-    <input type="date" id="return-date" name="return-date" style="width: 100%; padding: 10px; font-size: 16px;">
+    <input type="date" id="return-date" name="return-date" style="width: initial; padding: 10px; font-size: 16px;">
   </div>
 </div>
       <div class="additional-options">
         <div class="form-group">
-          <label for="passengers">Total Passengers:</label>
-          <select id="passengers" name="passengers" required>
+          <label for="passengers" style="margin-left: 10px;">Total Passengers: </label>
+          <select id="passengers" name="passengers" required style="width: 181.5px; height: 41px; padding: 10px; margin-left: 10px; margin-bottom: 10px;">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -202,7 +202,7 @@
 </section>
 
 <footer class="footer">
-  <div class="footer-content">
+  <div class="footer-content" style="background-color: lightblue; margin-top: 100px;">
     <div class="about-us">
       <h4>About Us</h4>
       <p>FlyDream is a leading online travel agency that provides affordable flights, hotels, and packages to destinations around the world.</p>
