@@ -547,3 +547,21 @@ h1, h2 {
   font-size: 14px;
   color: #666;
 }
+
+.section {
+  margin: 100px 0 0 0;
+  width: 850px;
+}
+
+.section > h3 {
+  margin: 20px 0 20px 30px;
+  text-align: left;
+}
+
+.flight-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}

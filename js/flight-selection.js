@@ -7,6 +7,7 @@ const toLocation = flightInfo.toLocation;
 const departDate = flightInfo.departDate;
 const returnDate = flightInfo.returnDate;
 const passengers = flightInfo.passengers;
+const oneWayOrReturn = flightInfo.oneWayOrReturn;
 
 async function fetchFlightData() {
   const response = await fetch('js/flightdata.json');
