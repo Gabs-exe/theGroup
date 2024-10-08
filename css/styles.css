@@ -565,3 +565,7 @@ h1, h2 {
   border: 1px solid #ccc;
   margin-bottom: 20px;
 }
+
+.card1 {
+  background-color: #f8f8f8;
+}
