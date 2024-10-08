@@ -1,73 +1,98 @@
-// Load locations from a text file
-fetch('js/locations.txt')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+// Clear localStorage + sessionStorage then initialise the content
+localStorage.clear(); // legacy workaround. Use sessionStorage for instance purposes
+sessionStorage.clear();
+
+async function fetchFlightData() {
+    const response = await fetch('js/flightdata.json');
+    let object = await response.json();
+    // console.log(object.route[1].to[1]) //testing
+    return object;
+}
+const flightData = fetchFlightData();
+
+const routeSelectFrom = document.getElementById('from-location');
+const routeSelectTo = document.getElementById('to-location');
+routeSelectFrom.addEventListener('change', () => {
+    flightData.then(data => {
+        // console.log(data.route[routeSelectFrom.value]);
+        for (let option of routeSelectTo.options) {
+            option.hidden = true;
         }
-        return response.text();
-    })
 
-    .then(data => {
-        const locations = data.split('\n').map(item => item.trim());
-        initAutocomplete('from-location', locations);
-        initAutocomplete('to-location', locations);
+        // Show only the destinations that are available from the selected origin
+        for (let from in data.route[routeSelectFrom.value].to) {
+            console.log(data.route[routeSelectFrom.value].to[from].destination);
+            for (let selected in routeSelectTo.options) {
+                if (routeSelectTo.options[selected].value == data.route[routeSelectFrom.value].to[from].destination) {
+                    routeSelectTo.options[selected].hidden = false;
+                }
+            }
+        }
     });
-
-// Initialize autocomplete function
-function initAutocomplete(inputId, locations) {
-    const input = document.getElementById(inputId);
-    input.addEventListener('input', function () {
-        const suggestions = locations.filter(location =>
-            location.toLowerCase().startsWith(this.value.toLowerCase())
-        );
-        showSuggestions(this, suggestions);
-    });
-}
-
-// Show suggestions under the input field
-function showSuggestions(input, suggestions) {
-    const list = document.createElement('ul');
-    list.style.position = 'absolute';
-    list.style.backgroundColor = 'white';
-    list.style.border = '1px solid #ccc';
-    list.style.maxHeight = '150px';
-    list.style.overflowY = 'auto';
-    list.style.width = input.offsetWidth + 'px';
-    list.style.marginTop = '0';
-    list.style.paddingLeft = '10px';
-
-    suggestions.forEach(suggestion => {
-        const listItem = document.createElement('li');
-        listItem.textContent = suggestion;
-        listItem.style.padding = '5px';
-        listItem.style.cursor = 'pointer';
-        listItem.addEventListener('click', function () {
-            input.value = this.textContent;
-            list.innerHTML = '';
-        });
-        list.appendChild(listItem);
-    });
-
-    clearSuggestions();
-    input.parentNode.appendChild(list);
-}
-
-// Clear suggestions
-function clearSuggestions() {
-    const oldList = document.querySelector('ul');
-    if (oldList) oldList.remove();
-}
-
-document.addEventListener('click', function (e) {
-    if (!e.target.matches('input')) {
-        clearSuggestions();
-    }
 });
 
-// Get all menu buttons
-const menuButtons = document.querySelectorAll('.menu-item');
+const departDateInput = document.getElementById('depart-date');
+const returnDateInput = document.getElementById('return-date');
+
+var timer;
+var timerCountdown = 1250;
+// Set the default date to today
+departDateInput.valueAsDate = new Date();
+departDateInput.min = new Date().toISOString().split('T')[0];
+returnDateInput.min = new Date().toISOString().split('T')[0];
+
+departDateInput.addEventListener('change', () => {
+    const departDate = new Date(departDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+    returnDateInput.min = departDate.toISOString().split('T')[0];
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        if (departDateInput.value < new Date().toISOString().split('T')[0]) {
+            alert('Departure date must be today or later.');
+        }
+
+        if (departDate > returnDate) {
+            alert('Departure date cannot be after return date.');
+        }
+    }, timerCountdown);
+});
+
+returnDateInput.addEventListener('change', () => {
+    const departDate = new Date(departDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+    returnDateInput.min = departDate.toISOString().split('T')[0];
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        if (departDate > returnDate) {
+            alert('Departure date cannot be after return date.');
+        }
+    }, timerCountdown);
+});
+
+// Disable the return date input if the one-way checkbox is checked
+const oneWayCheckbox = document.getElementById('one-way');
+oneWayCheckbox.addEventListener('change', () => {checkState()});
+
+function checkState() { 
+    if (oneWayCheckbox.checked) {
+        returnDateInput.disabled = true;
+        returnDateInput.value = '';
+        returnDateInput.classList.add('not-used');
+    } else {
+        returnDateInput.disabled = false;
+        returnDateInput.classList.remove('not-used');
+    }
+}
+
+// Call checkState on page load to ensure the correct state is set
+window.addEventListener('pageshow', () => {
+    checkState();
+});
 
 // Add event listener to each menu button
+const menuButtons = document.querySelectorAll('.menu-item');
 menuButtons.forEach(button => {
     button.addEventListener('click', () => {
         // Remove selected class from all buttons
@@ -137,20 +162,37 @@ showPasswordCheckbox.addEventListener('change', () => {
     }
 });
 
+
 document.getElementById('book-flight-form').addEventListener('submit', function (event) {
-  event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault(); // Prevent the form from submitting normally
 
-  // Get form data
-  const fromLocation = document.getElementById('from-location').value;
-  const toLocation = document.getElementById('to-location').value;
-  const departDate = document.getElementById('depart-date').value;
-  const returnDate = document.getElementById('return-date').value;
-  const passengers = document.getElementById('passengers').value;
+    // Get form data
+    const fromLocation = document.getElementById('from-location').selectedOptions[0].getAttribute('data-alt');
+    const toLocation = document.getElementById('to-location').value;
+    const departDate = document.getElementById('depart-date').value;
+    const returnDate = document.getElementById('return-date').value;
+    const passengers = document.getElementById('passengers').value;
+    const oneWayOrReturn = document.getElementById('one-way').checked;
 
-  // Create a query string
-  const queryString = `from=${encodeURIComponent(fromLocation)}&to=${encodeURIComponent(toLocation)}&depart=${encodeURIComponent(departDate)}&return=${encodeURIComponent(returnDate)}&passengers=${encodeURIComponent(passengers)}`;
+    // Validate the values from the form (check date validity)
+    const departDateCheck = new Date(departDateInput.value);
+    const returnDateCheck = new Date(returnDateInput.value);
 
-  // Redirect to results page with the query string
-  window.location.href = `results.html?${queryString}`;
+    console.log(fromLocation, toLocation);
+    if (returnDateCheck < departDateCheck) {
+        alert('Departure date cannot be after return date.');
+        return;
+    }
+
+    if (oneWayOrReturn === false && returnDate === '') {
+        alert('Return date is required.');
+        return;
+    }
+
+    // save form data to sessionStorage
+    sessionStorage.setItem('flightInfo', JSON.stringify({ fromLocation, toLocation, departDate, returnDate, passengers, oneWayOrReturn }));
+
+    // Redirect to results page 
+    window.location.href = `flight-selection.html`;
 });
 

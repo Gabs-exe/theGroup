@@ -9,11 +9,11 @@
 </head>
 
 <body>
-  <div class="top-strip">
-    <img src="logo.png" alt="Company Logo" class="logo">
+  <div class="navbar">
+    <img src="img/logo-wide.png" alt="FlyDream" class="logo">
     <div class="top-right">
       <button>Language</button>
-      <button id="sign-in-btn">Sign In</button>
+      <button id="sign-in-btn">Sign In | Register</button>
     </div>
   </div>
 
@@ -27,38 +27,82 @@
       <button class="menu-item" id="flight-status-btn">Flight Status</button>
     </div>
 
-    <form id="book-flight-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="from-location">From:</label>
-          <input type="text" id="from-location" name="from-location" placeholder="Enter departure city" required>
-        </div>
-        <div class="form-group">
-          <label for="to-location">To:</label>
-          <input type="text" id="to-location" name="to-location" placeholder="Enter destination city" required>
-        </div>
+    <div class="form-row">
+      <div class="form-group" style="font-size: 27px; color: #2C3E50; background-color: #ECF0F1; float: left;">
+        <label>Where shall we go today?</label>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="depart-date">Depart Date:</label>
-          <input type="date" id="depart-date" name="depart-date" required>
+      <div class="form-group" style="float: right; background-color: #ECF0F1;">
+        <label for="one-way" class="checkbox-label">One-way</label>
+        <input type="checkbox" id="one-way" name="one-way">
+      </div>
+    </div>
+
+    <form id="book-flight-form">
+      <div class="form-row"
+        style="display: flex; justify-content: space-around; background-color: #ECF0F1; margin-bottom: 20px;">
+        <div class="form-group" style="width: 25%; padding: 10px;">
+          <label for="from-location" style="font-size: 16px; color: #2C3E50;">From:</label>
+          <select id="from-location" name="from-location" required style="width: 100%; padding: 10px; font-size: 16px;">
+            <option value="" disabled selected>Select departure city</option>
+            <optgroup label="Australia">
+              <option value="0" data-alt="Sydney">Sydney</option>
+              <option value="1" data-alt="Melbourne">Melbourne</option>
+              <option value="2" data-alt="Brisbane">Brisbane</option>
+              <option value="3" data-alt="Perth">Perth</option>
+            </optgroup>
+            <optgroup label="New Zealand">
+              <option value="4" data-alt="Auckland">Auckland</option>
+              <option value="5" data-alt="Wellington">Wellington</option>
+            </optgroup>
+          </select>
         </div>
-        <div class="form-group">
-          <label for="return-date">Return Date:</label>
-          <input type="date" id="return-date" name="return-date">
+        <div class="form-group" style="width: 25%; padding: 10px;">
+          <label for="to-location" style="font-size: 16px; color: #2C3E50;">To:</label>
+          <select id="to-location" name="to-location" required style="width: 100%; padding: 10px; font-size: 16px;">
+            <option value="" disabled selected>Select destination city</option>
+            <optgroup label="Australia">
+              <option value="Sydney">Sydney</option>
+              <option value="Melbourne">Melbourne</option>
+              <option value="Perth">Perth</option>
+              <option value="Brisbane">Brisbane</option>
+            </optgroup>
+            <optgroup label="New Zealand">
+              <option value="Auckland">Auckland</option>
+              <option value="Wellington">Wellington</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group" style="width: initial; padding: 10px;">
+          <label for="depart-date" style="font-size: 16px; color: #2C3E50;">Depart Date:</label>
+          <input type="date" id="depart-date" name="depart-date" required
+            style="width: initial; padding: 10px; font-size: 16px;">
+        </div>
+        <div class="form-group" style="width: initial; padding: 10px;">
+          <label for="return-date" style="font-size: 16px; color: #2C3E50;">Return Date:</label>
+          <input type="date" id="return-date" name="return-date"
+            style="width: initial; padding: 10px; font-size: 16px;">
         </div>
       </div>
       <div class="additional-options">
         <div class="form-group">
-          <label for="passengers">Total Passengers:</label>
-          <input type="number" id="passengers" name="passengers" min="1" max="9999" required>
+          <label for="passengers" style="margin-left: 10px;">Total Passengers: </label>
+          <select id="passengers" name="passengers" required
+            style="width: 181.5px; height: 41px; padding: 10px; margin-left: 10px; margin-bottom: 10px;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
         </div>
         <div class="form-group">
-          <input type="checkbox" id="one-way" name="one-way">
-          <label for="one-way" class="checkbox-label">One-way flight</label>
+          <button type="submit" class="submit-btn">Enter</button>
         </div>
       </div>
-      <button type="submit" class="submit-btn">Enter</button>
     </form>
 
     <!-- New form for Manage Booking -->
@@ -101,33 +145,97 @@
 
 
   <!-- New form for Sign Up -->
-<div id="sign-up-modal" style="display: none;">
-  <div id="sign-up-modal-content">
-    <div id="sign-up-modal-header">
-      <h2>Sign Up</h2>
-      <span id="sign-up-modal-close">&times;</span>
-    </div>
-    <form id="sign-up-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="email">Email Address or Business Number:</label>
-          <input type="text" id="email" name="email" placeholder="Enter your Email/Business Number" required>
-        </div>
+  <div id="sign-up-modal" style="display: none;">
+    <div id="sign-up-modal-content">
+      <div id="sign-up-modal-header">
+        <h2>Sign Up</h2>
+        <span id="sign-up-modal-close">&times;</span>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password" required>
-          <div class="checkbox-container">
-            <input type="checkbox" id="show-password" name="show-password">
-            <label for="show-password" class="checkbox-label">Show Password</label>
+      <form id="sign-up-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address or Business Number:</label>
+            <input type="text" id="email" name="email" placeholder="Enter your Email/Business Number" required>
           </div>
         </div>
-      </div>
-      <button type="submit" class="submit-btn">Sign Up</button>
-    </form>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <div class="checkbox-container">
+              <input type="checkbox" id="show-password" name="show-password">
+              <label for="show-password" class="checkbox-label">Show Password</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">Sign Up</button>
+      </form>
+    </div>
   </div>
-</div>
-<script src="js/home.js"></script>
+
+  <section class="destination-search"></section>
+  <h2>Travelling from</h2>
+  <div class="search-bar">
+    <input type="text" placeholder="Let's go to...">
+    <button>Search</button>
+  </div>
+
+  <div class="destination-cards">
+    <div class="destination-card">
+      <img src="img/melbourne.png" alt="Melbourne">
+      <div class="destination-info">
+        <h3>Melbourne</h3>
+        <p>From $419</p>
+      </div>
+    </div>
+    <div class="destination-card">
+      <img src="img/perth.png" alt="Perth">
+      <div class="destination-info">
+        <h3>Perth</h3>
+        <p>From $641</p>
+      </div>
+    </div>
+    <div class="destination-card">
+      <img src="img/auckland.png" alt="Auckland">
+      <div class="destination-info">
+        <h3>Auckland</h3>
+        <p>From $854</p>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content" style="background-color: lightblue; margin-top: 100px;">
+      <div class="about-us">
+        <h4>About Us</h4>
+        <p>FlyDream is a leading online travel agency that provides affordable flights, hotels, and packages to
+          destinations around the world.</p>
+      </div>
+
+      <div class="quick-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Book a Flight</a></li>
+          <li><a href="#">Manage Booking</a></li>
+          <li><a href="#">Check-In</a></li>
+        </ul>
+      </div>
+
+      <div class="contact-us">
+        <h4>Contact Us</h4>
+        <p>Phone: +1 800 123 4567</p>
+        <p>Email: <a href="mailto:info@flydream.com">info@flydream.com</a></p>
+        <p>Address: 123 Main St, Anytown, USA</p>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>&copy; 2023 FlyDream. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/home.js"></script>
 </body>
+
 </html>

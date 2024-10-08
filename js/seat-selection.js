@@ -7,7 +7,7 @@ selectedSeatsContainer.id = 'selected-seats';
 seatMap.after(selectedSeatsContainer);
 
 // Retrieve the number of passengers
-const numPassengers = parseInt(localStorage.getItem('numPassengers')) || 1;
+const numPassengers = parseInt(passengerDetails.passengers);
 
 let selectedSeatsCount = 0;
 
@@ -91,7 +91,7 @@ nextBtn.addEventListener('click', () => {
   localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
 
   // Redirect to next page
-  window.location.href = 'next-page.html';
+  window.location.href = 'services.html';
 });
 
 // Add event listener to seats
@@ -101,9 +101,13 @@ seats.forEach((row) => {
       if (seat.classList.contains('selected')) {
         seat.classList.remove('selected');
         selectedSeatsCount--;
+        seat.style.background = ''; // Reset seat color
+        seat.style.color = ''; // Reset text color
       } else if (selectedSeatsCount < numPassengers) {
         seat.classList.add('selected');
         selectedSeatsCount++;
+        seat.style.background = 'green'; // Change seat color to green
+        seat.style.color = 'white'; // Change text color to white
       } else {
         alert(`You can only select ${numPassengers} seat(s).`);
       }
@@ -120,7 +124,7 @@ function updateSelectedSeatsDisplay() {
     row.forEach((seat, columnIndex) => {
       if (seat.classList.contains('selected')) {
         const seatLabel = String.fromCharCode(65 + columnIndex); // A, B, C, D, E, F
-        selectedSeats.push(`Row ${rowIndex + 1}, Seat ${seatLabel}`);
+        selectedSeats.push(`Row ${rowIndex }, Seat ${seatLabel}`);
         seat.style.background = 'green'; // Change seat color to green
         seat.style.color = 'white'; // Change text color to white
       } else {
