@@ -13,14 +13,27 @@ let selectedSeatsCount = 0;
 
 // Generate seat map
 const seats = [];
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 20; i++) { // 20 rows
   const row = [];
-  for (let j = 0; j < 6; j++) {
+  for (let j = 0; j < 6; j++) { // 6 seats per row
     const seat = document.createElement('div');
     seat.classList.add('seat');
     row.push(seat);
   }
   seats.push(row);
+}
+
+// Randomly mark seats as full (unavailable)
+const fullSeats = [];
+const totalSeats = 20 * 6; // 20 rows, 6 seats per row
+const numFullSeats = Math.floor(totalSeats * 0.2); // 20% of seats are full
+
+for (let i = 0; i < numFullSeats; i++) {
+  const randomRow = Math.floor(Math.random() * 20);
+  const randomSeat = Math.floor(Math.random() * 6);
+  const seat = seats[randomRow][randomSeat];
+  seat.classList.add('full');
+  fullSeats.push({ row: randomRow, seat: randomSeat });
 }
 
 // Create seat map rows
@@ -49,6 +62,14 @@ seats.forEach((row, rowIndex) => {
 
     row.forEach((seat, columnIndex) => {
       rowContainer.appendChild(seat);
+
+      // Check if seat is full
+      if (seat.classList.contains('full')) {
+        seat.style.background = 'red'; // Mark full seat as red
+        seat.style.color = 'white'; // Set text color to white
+        seat.setAttribute('title', 'This seat is unavailable');
+        seat.removeEventListener('click', selectSeat); // Disable clicking on full seats
+      }
 
       if (columnIndex === 2) {
         const aisleSpace = document.createElement('span');
@@ -97,24 +118,31 @@ nextBtn.addEventListener('click', () => {
 // Add event listener to seats
 seats.forEach((row) => {
   row.forEach((seat) => {
-    seat.addEventListener('click', () => {
-      if (seat.classList.contains('selected')) {
-        seat.classList.remove('selected');
-        selectedSeatsCount--;
-        seat.style.background = ''; // Reset seat color
-        seat.style.color = ''; // Reset text color
-      } else if (selectedSeatsCount < numPassengers) {
-        seat.classList.add('selected');
-        selectedSeatsCount++;
-        seat.style.background = 'green'; // Change seat color to green
-        seat.style.color = 'white'; // Change text color to white
-      } else {
-        alert(`You can only select ${numPassengers} seat(s).`);
-      }
-      updateSelectedSeatsDisplay();
-    });
+    seat.addEventListener('click', selectSeat); // Add event listener for seat selection
   });
 });
+
+// Function to handle seat selection
+function selectSeat() {
+  if (this.classList.contains('full')) {
+    return; // Skip full seats
+  }
+
+  if (this.classList.contains('selected')) {
+    this.classList.remove('selected');
+    selectedSeatsCount--;
+    this.style.background = ''; // Reset seat color
+    this.style.color = ''; // Reset text color
+  } else if (selectedSeatsCount < numPassengers) {
+    this.classList.add('selected');
+    selectedSeatsCount++;
+    this.style.background = 'green'; // Change seat color to green
+    this.style.color = 'white'; // Change text color to white
+  } else {
+    alert(`You can only select ${numPassengers} seat(s).`);
+  }
+  updateSelectedSeatsDisplay();
+}
 
 // Update selected seats display
 function updateSelectedSeatsDisplay() {
@@ -124,7 +152,7 @@ function updateSelectedSeatsDisplay() {
     row.forEach((seat, columnIndex) => {
       if (seat.classList.contains('selected')) {
         const seatLabel = String.fromCharCode(65 + columnIndex); // A, B, C, D, E, F
-        selectedSeats.push(`Row ${rowIndex }, Seat ${seatLabel}`);
+        selectedSeats.push(`Row ${rowIndex}, Seat ${seatLabel}`);
         seat.style.background = 'green'; // Change seat color to green
         seat.style.color = 'white'; // Change text color to white
       } else {
