@@ -22,29 +22,20 @@
   </div>
 
   <div class="section">
-    <h3>Flight Cards</h3>
-    <div id="results">
-      <div class="flight-card">
-        <div class="card1">
-          <p>Sydney</p>
-          <p>Departure: 10:00</p>
-          <p>Date</p>
-        </div>
-        <img src="img/plane.png">
-        <div class="card1">
-          <p>Melbourne</p>
-          <p>Arrival: 11:00</p>
-          <p>Date</p>
-        </div>
-        <button class="card4">Select</button>
-      </div>
-    </div>
+    <h3 id="from-title"></h3>
+    <ul id="results-from">
+    </ul>
+    <h3 id="to-title"></h3>
+    <ul id="results-to">
+    </ul>
+  </div>
 
   </div>
 
-  <div class="flight-select" id="flight-select">
-
+  <div class="section">
+    <div class="move-on"><button id="submit-btn" onclick="submitTest()">Submit</button></div>
   </div>
+
 
   <script src="js/flight-selection.js"></script>
 </body>

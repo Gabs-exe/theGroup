@@ -184,6 +184,11 @@ document.getElementById('book-flight-form').addEventListener('submit', function 
         return;
     }
 
+    if (oneWayOrReturn === false && returnDate === '') {
+        alert('Return date is required.');
+        return;
+    }
+
     // save form data to sessionStorage
     sessionStorage.setItem('flightInfo', JSON.stringify({ fromLocation, toLocation, departDate, returnDate, passengers, oneWayOrReturn }));
 
