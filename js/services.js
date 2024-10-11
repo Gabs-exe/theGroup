@@ -1,52 +1,22 @@
-// Create an array of services
+// Create a consolidated array of services from all categories
 const services = [
-  {
-    category: 'Launch',
-    items: [
-      { name: 'Appetizer Platter', price: 10, image: 'images/appetizer-platter.jpg' },
-      { name: 'Soup of the Day', price: 8, image: 'images/soup-of-the-day.jpg' },
-      { name: 'Salad Mix', price: 12, image: 'images/salad-mix.jpg' }
-    ]
-  },
-  {
-    category: 'Breakfast',
-    items: [
-      { name: 'Eggs Benedict', price: 15, image: 'images/eggs-benedict.jpg' },
-      { name: 'Pancakes', price: 10, image: 'images/pancakes.jpg' },
-      { name: 'Breakfast Burrito', price: 12, image: 'images/breakfast-burrito.jpg' }
-    ]
-  },
-  {
-    category: 'Dinner',
-    items: [
-      { name: 'Grilled Steak', price: 25, image: 'images/grilled-steak.jpg' },
-      { name: 'Pan-Seared Salmon', price: 22, image: 'images/pan-seared-salmon.jpg' },
-      { name: 'Vegetarian Quinoa Bowl', price: 18, image: 'images/vegetarian-quinoa-bowl.jpg' }
-    ]
-  },
-  {
-    category: 'Food',
-    items: [
-      { name: 'Sandwich', price: 5, image: 'images/sandwich.jpg' },
-      { name: 'Pasta', price: 7, image: 'images/pasta.jpg' },
-      { name: 'Fish & Chips', price: 8, image: 'images/fish-chips.jpg' }
-    ]
-  },
-  {
-    category: 'Beverages',
-    items: [
-      { name: 'Coke', price: 2, image: 'images/coke.jpg' },
-      { name: 'Fanta', price: 2, image: 'images/fanta.jpg' }
-    ]
-  },
-  {
-    category: 'Alcoholic Beverages',
-    items: [
-      { name: 'Jim Beam (1 peg)', price: 10, image: 'images/jim-beam.jpg' },
-      { name: 'Laphroaig', price: 12, image: 'images/laphroaig.jpg' },
-      { name: 'Macallan', price: 15, image: 'images/macallan.jpg' }
-    ]
-  }
+  { category: 'Launch', name: 'Appetizer Platter', price: 10, image: 'images/appetizer-platter.jpg' },
+  { category: 'Launch', name: 'Soup of the Day', price: 8, image: 'images/soup-of-the-day.jpg' },
+  { category: 'Launch', name: 'Salad Mix', price: 12, image: 'images/salad-mix.jpg' },
+  { category: 'Breakfast', name: 'Eggs Benedict', price: 15, image: 'images/eggs-benedict.jpg' },
+  { category: 'Breakfast', name: 'Pancakes', price: 10, image: 'images/pancakes.jpg' },
+  { category: 'Breakfast', name: 'Breakfast Burrito', price: 12, image: 'images/breakfast-burrito.jpg' },
+  { category: 'Dinner', name: 'Grilled Steak', price: 25, image: 'images/grilled-steak.jpg' },
+  { category: 'Dinner', name: 'Pan-Seared Salmon', price: 22, image: 'images/pan-seared-salmon.jpg' },
+  { category: 'Dinner', name: 'Vegetarian Quinoa Bowl', price: 18, image: 'images/vegetarian-quinoa-bowl.jpg' },
+  { category: 'Food', name: 'Sandwich', price: 5, image: 'images/sandwich.jpg' },
+  { category: 'Food', name: 'Pasta', price: 7, image: 'images/pasta.jpg' },
+  { category: 'Food', name: 'Fish & Chips', price: 8, image: 'images/fish-chips.jpg' },
+  { category: 'Beverages', name: 'Coke', price: 2, image: 'images/coke.jpg' },
+  { category: 'Beverages', name: 'Fanta', price: 2, image: 'images/fanta.jpg' },
+  { category: 'Alcoholic Beverages', name: 'Jim Beam (1 peg)', price: 10, image: 'images/jim-beam.jpg' },
+  { category: 'Alcoholic Beverages', name: 'Laphroaig', price: 12, image: 'images/laphroaig.jpg' },
+  { category: 'Alcoholic Beverages', name: 'Macallan', price: 15, image: 'images/macallan.jpg' }
 ];
 
 // Store selected services
@@ -54,30 +24,17 @@ const selectedServices = [];
 
 // Create the services grid
 const servicesGrid = document.getElementById('services-grid');
-const categorySelect = document.createElement('select');
-categorySelect.id = 'category-select';
-
-// Create options for the select menu
-services.forEach((category) => {
-  const option = document.createElement('option');
-  option.value = category.category;
-  option.text = category.category;
-  categorySelect.appendChild(option);
-});
-
-// Add the select menu to the page
-servicesGrid.appendChild(categorySelect);
-
-// Create a container for the category items
-const categoryItemsContainer = document.createElement('div');
-categoryItemsContainer.id = 'category-items-container';
-servicesGrid.appendChild(categoryItemsContainer);
 
 // Create a container for displaying selected items
 const selectedItemsContainer = document.createElement('div');
 selectedItemsContainer.id = 'selected-items-container';
 selectedItemsContainer.innerHTML = '<h3>Selected Items:</h3>';
 servicesGrid.appendChild(selectedItemsContainer);
+
+// Create a container for displaying all items
+const itemsGrid = document.createElement('div');
+itemsGrid.classList.add('items-grid');
+servicesGrid.appendChild(itemsGrid);
 
 // Function to render the selected items
 function renderSelectedItems() {
@@ -97,24 +54,13 @@ function renderSelectedItems() {
   selectedItemsContainer.appendChild(ul);
 }
 
-// Function to render the category items
-function renderCategoryItems(category) {
-  // Clear the category items container
-  categoryItemsContainer.innerHTML = '';
-
-  // Create the category container
-  const categoryContainer = document.createElement('div');
-  categoryContainer.classList.add('category-container');
-  categoryContainer.innerHTML = `<h2>${category.category}</h2>`;
-  categoryItemsContainer.appendChild(categoryContainer);
-
-  // Create the items grid
-  const itemsGrid = document.createElement('div');
-  itemsGrid.classList.add('items-grid');
-  categoryContainer.appendChild(itemsGrid);
+// Function to render all items
+function renderItems() {
+  // Clear the items container
+  itemsGrid.innerHTML = '';
 
   // Create the items
-  category.items.forEach((item) => {
+  services.forEach((item) => {
     const itemContainer = document.createElement('div');
     itemContainer.classList.add('item-container');
     itemsGrid.appendChild(itemContainer);
@@ -129,7 +75,7 @@ function renderCategoryItems(category) {
     itemContainer.appendChild(itemPrice);
 
     const itemName = document.createElement('p');
-    itemName.innerHTML = item.name;
+    itemName.innerHTML = `${item.name} (${item.category})`;
     itemContainer.appendChild(itemName);
 
     const addButton = document.createElement('button');
@@ -154,14 +100,8 @@ function renderCategoryItems(category) {
   });
 }
 
-// Event listener for the select menu
-categorySelect.addEventListener('change', (e) => {
-  const selectedCategory = services.find((category) => category.category === e.target.value);
-  renderCategoryItems(selectedCategory);
-});
-
-// Render the first category by default
-renderCategoryItems(services[0]);
+// Render all items initially
+renderItems();
 
 // Add event listener to "Next" button
 document.querySelector('.submit-btn').addEventListener('click', () => {

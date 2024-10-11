@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review Details</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Include your stylesheet if needed -->
+    <link rel="stylesheet" href="css/styles.css"> <!-- Include your stylesheet if needed -->
     <script src="js/review-details.js"></script> <!-- Include the JavaScript file -->
 </head>
 <body>
@@ -17,9 +17,10 @@
       </div>
 
     <h1>Review Your Booking Details</h1>
+    <div class="container" style="height: auto;">
 
     <!-- Flight Details Section -->
-    <section id="flight-details-section">
+    <section id="flight-details-section" >
         <h2>Flight Details</h2>
         <div id="flight-details">
             <!-- Flight details will be populated here by JS -->
@@ -27,9 +28,9 @@
     </section>
 
     <!-- Passenger Details Section -->
-    <section id="passenger-details-section">
+    <section id="passenger-details-section" >
         <h2>Passenger Details</h2>
-        <div id="passenger-details">
+        <div id="passenger-details" style="margin-left: 25%;">
             <!-- Passenger details will be populated here by JS -->
         </div>
     </section>
@@ -37,7 +38,7 @@
     <!-- Seat Selection Section -->
     <section id="seat-selection-section">
         <h2>Selected Seats</h2>
-        <div id="selected-seats">
+        <div id="selected-seats" >
             <!-- Selected seats will be populated here by JS -->
         </div>
     </section>
@@ -45,13 +46,14 @@
     <!-- In-flight Services Section -->
     <section id="services-section">
         <h2>Selected In-Flight Services</h2>
-        <div id="selected-services">
+        <div id="selected-services" style="margin-left: 25%;">
             <!-- Selected in-flight services will be populated here by JS -->
         </div>
     </section>
 
     <!-- Proceed to Payment Button -->
     <button id="proceed-to-payment-btn">Proceed to Payment</button>
+  </div>
 
 </body>
 </html>
