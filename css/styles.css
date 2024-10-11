@@ -590,7 +590,11 @@
  }
 
  .move-on {
-=======
+ display: flex;
+ justify-content: center;
+ margin: -20px 0 40px 0;
+}
+
 #seat-map .row {
   display: flex;
   justify-content: center;
