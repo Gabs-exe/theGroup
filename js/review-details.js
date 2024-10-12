@@ -1,21 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Retrieve flight details from localStorage
-  const flightDetails = JSON.parse(localStorage.getItem('flightDetails')) || {};
-  const { flightId, fromLocation, toLocation, departDate, returnDate, passengers } = flightDetails;
+  // Retrieve flight details from sessionStorage
+  let flightInfo;
+  try {
+      flightInfo = JSON.parse(sessionStorage.getItem('flightInfo'));
+      if (!flightInfo) {
+          throw new Error('No flight info found in sessionStorage');
+      }
+  } catch (error) {
+      console.error('Error retrieving flight info:', error);
+      alert('Error: No flight information found. Please go back and select your flight.');
+      window.location.href = 'flight-selection.html'; // Replace with your actual flight selection page
+      throw error;
+  }
 
-  // Display flight details
+  const { flightId, selectedFlightFrom, selectedFlightTo, departDate, returnDate, oneWayOrReturn, selectedSeats } = flightInfo;
+
+  // Display flight details (departure)
   const flightDetailsDiv = document.getElementById('flight-details');
   flightDetailsDiv.innerHTML = `
       <p><strong>Flight ID:</strong> ${flightId || 'N/A'}</p>
-      <p><strong>From:</strong> ${fromLocation || 'N/A'}</p>
-      <p><strong>To:</strong> ${toLocation || 'N/A'}</p>
+      <p><strong>From:</strong> ${selectedFlightFrom?.fromLocation || 'N/A'}</p>
+      <p><strong>To:</strong> ${selectedFlightFrom?.toLocation || 'N/A'}</p>
       <p><strong>Depart Date:</strong> ${departDate || 'N/A'}</p>
-      <p><strong>Return Date:</strong> ${returnDate ? returnDate : 'N/A'}</p>
-      <p><strong>Passengers:</strong> ${passengers || 'N/A'}</p>
   `;
 
-  // Retrieve passenger details from localStorage
-  const passengerDetails = JSON.parse(localStorage.getItem('passengerDetails')) || {};
+  // If it's a return trip, show the return flight details
+  if (!oneWayOrReturn && selectedFlightTo && returnDate) {
+    flightDetailsDiv.innerHTML += `
+      <p><strong>Return Flight:</strong></p>
+      <p><strong>From:</strong> ${selectedFlightTo?.fromLocation || 'N/A'}</p>
+      <p><strong>To:</strong> ${selectedFlightTo?.toLocation || 'N/A'}</p>
+      <p><strong>Return Date:</strong> ${returnDate || 'N/A'}</p>
+    `;
+  }
+
+  // Retrieve passenger details from sessionStorage
+  const passengerDetails = flightInfo.passengerDetails || {};
   const passengerDetailsDiv = document.getElementById('passenger-details');
   passengerDetailsDiv.innerHTML = `
       <p><strong>Name:</strong> ${passengerDetails.title || ''} ${passengerDetails.firstName || ''} ${passengerDetails.lastName || ''}</p>
@@ -26,17 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
       <p><strong>Email:</strong> ${passengerDetails.email || 'N/A'}</p>
   `;
 
-  // Retrieve selected seats from localStorage
-  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
+  // Display selected seats
   const selectedSeatsDiv = document.getElementById('selected-seats');
-  selectedSeatsDiv.innerHTML = selectedSeats.length ? selectedSeats.join('<br>') : 'No seats selected.';
+  selectedSeatsDiv.innerHTML = selectedSeats && selectedSeats.length ? selectedSeats.join('<br>') : 'No seats selected.';
 
-  // Retrieve selected in-flight services from localStorage (if available)
-  const selectedServices = JSON.parse(localStorage.getItem('selectedServices')) || [];
-  const selectedServicesDiv = document.getElementById('selected-services');
-  selectedServicesDiv.innerHTML = selectedServices.length 
-    ? selectedServices.map(service => `${service.name} - $${service.price}`).join('<br>') 
-    : 'No services selected.';
+// Retrieve selected services from sessionStorage
+const selectedServices = JSON.parse(sessionStorage.getItem('selectedServices')) || [];
+const selectedServicesDiv = document.getElementById('selected-services');
+selectedServicesDiv.innerHTML = selectedServices.length 
+  ? selectedServices.map(service => `${service.name} - $${service.price}`).join('<br>') 
+  : 'No services selected.';
 
   // Handle Proceed to Payment button click
   document.getElementById('proceed-to-payment-btn').addEventListener('click', () => {

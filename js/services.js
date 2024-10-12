@@ -105,8 +105,8 @@ renderItems();
 
 // Add event listener to "Next" button
 document.querySelector('.submit-btn').addEventListener('click', () => {
-  // Save selected services to localStorage
-  localStorage.setItem('selectedServices', JSON.stringify(selectedServices));
+  // Save selected services to sessionStorage instead of localStorage
+  sessionStorage.setItem('selectedServices', JSON.stringify(selectedServices));
 
   // Redirect to review-details.html
   window.location.href = 'review-details.html';

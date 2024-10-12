@@ -461,7 +461,7 @@
 }
 #seat-map .seat.selected-seat {
   background-color: green;
-  color: white;
+  color: green;
 }
 
 
@@ -574,7 +574,7 @@ button:hover {
 }
 
 .selected {
-  background-color: white;  /* Set background color to white */
+  background-color: green;  /* Set background color to white */
   color: black;  /* Set text color to black for visibility */
   border: 1px solid #ddd;  /* Optional: Add border */
 }
