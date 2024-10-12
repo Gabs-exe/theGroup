@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
       sessionStorage.setItem('flightInfo', JSON.stringify(flightInfo));
 
       // Redirect to the next page (e.g., payment page)
-      window.location.href = 'payment.html';
+      window.location.href = 'sevices.html';
   });
 
   function updateSelectedSeatsDisplay() {
