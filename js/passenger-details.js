@@ -15,41 +15,34 @@ form.addEventListener('submit', function (event) {
 
   // Collect form data
   const formData = new FormData(form);
-  const title = formData.get('title');
-  const firstName = formData.get('first-name');
-  const lastName = formData.get('last-name');
-  const dob = formData.get('dob');
-  const passportNum = formData.get('passport-num');
-  const gender = formData.get('gender');
-  const countryCode = formData.get('country-code');
-  const contactNumber = formData.get('contact-number');
-  const email = formData.get('email');
+  const passengerDetails = {
+    title: formData.get('title'),
+    firstName: formData.get('first-name'),  
+    lastName: formData.get('last-name'),
+    dob: formData.get('dob'),
+    passportNum: formData.get('passport-num'),
+    gender: formData.get('gender'),
+    countryCode: formData.get('country-code'),
+    contactNumber: formData.get('contact-number'),
+    email: formData.get('email')
+  };
 
   // Perform basic validation
-  if (!firstName || !lastName || !dob || !passportNum || !gender || !countryCode || !contactNumber || !email) {
+  if (!passengerDetails.firstName || !passengerDetails.lastName || !passengerDetails.dob || 
+      !passengerDetails.passportNum || !passengerDetails.gender || !passengerDetails.countryCode || 
+      !passengerDetails.contactNumber || !passengerDetails.email) {
     alert('Please fill in all required fields.');
     return;
   }
 
-  // Save passenger details to local storage
-  const passengerDetails = {
-    title,
-    firstName,
-    lastName,
-    dob,
-    passportNum,
-    gender,
-    countryCode,
-    contactNumber,
-    email,
-    from: fromLocation,
-    to: toLocation,
-    flightId,
-    departDate,
-    returnDate,
-    passengers
-  };
-  localStorage.setItem('passengerDetails', JSON.stringify(passengerDetails));
+  // Get existing flight info from sessionStorage
+  const flightInfo = JSON.parse(sessionStorage.getItem('flightInfo')) || {};
+
+  // Add passenger details to flightInfo
+  flightInfo.passengerDetails = passengerDetails;
+
+  // Save updated flightInfo back to sessionStorage
+  sessionStorage.setItem('flightInfo', JSON.stringify(flightInfo));
 
   // Redirect to seat selection page
   window.location.href = 'seat-selection.html';

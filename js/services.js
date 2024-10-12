@@ -1,22 +1,22 @@
 // Create a consolidated array of services from all categories
 const services = [
-  { category: 'Launch', name: 'Appetizer Platter', price: 10, image: 'images/appetizer-platter.jpg' },
-  { category: 'Launch', name: 'Soup of the Day', price: 8, image: 'images/soup-of-the-day.jpg' },
-  { category: 'Launch', name: 'Salad Mix', price: 12, image: 'images/salad-mix.jpg' },
-  { category: 'Breakfast', name: 'Eggs Benedict', price: 15, image: 'images/eggs-benedict.jpg' },
-  { category: 'Breakfast', name: 'Pancakes', price: 10, image: 'images/pancakes.jpg' },
-  { category: 'Breakfast', name: 'Breakfast Burrito', price: 12, image: 'images/breakfast-burrito.jpg' },
-  { category: 'Dinner', name: 'Grilled Steak', price: 25, image: 'images/grilled-steak.jpg' },
-  { category: 'Dinner', name: 'Pan-Seared Salmon', price: 22, image: 'images/pan-seared-salmon.jpg' },
-  { category: 'Dinner', name: 'Vegetarian Quinoa Bowl', price: 18, image: 'images/vegetarian-quinoa-bowl.jpg' },
-  { category: 'Food', name: 'Sandwich', price: 5, image: 'images/sandwich.jpg' },
-  { category: 'Food', name: 'Pasta', price: 7, image: 'images/pasta.jpg' },
-  { category: 'Food', name: 'Fish & Chips', price: 8, image: 'images/fish-chips.jpg' },
-  { category: 'Beverages', name: 'Coke', price: 2, image: 'images/coke.jpg' },
-  { category: 'Beverages', name: 'Fanta', price: 2, image: 'images/fanta.jpg' },
-  { category: 'Alcoholic Beverages', name: 'Jim Beam (1 peg)', price: 10, image: 'images/jim-beam.jpg' },
-  { category: 'Alcoholic Beverages', name: 'Laphroaig', price: 12, image: 'images/laphroaig.jpg' },
-  { category: 'Alcoholic Beverages', name: 'Macallan', price: 15, image: 'images/macallan.jpg' }
+  { category: 'Launch', name: 'Appetizer Platter', price: 10, image: 'img/appetizer-platter.jpg' },
+  { category: 'Launch', name: 'Soup of the Day', price: 8, image: 'img/soup-of-the-day.jpg' },
+  { category: 'Launch', name: 'Salad Mix', price: 12, image: 'img/salad-mix.jpg' },
+  { category: 'Breakfast', name: 'Eggs Benedict', price: 15, image: 'img/eggs-benedict.jpg' },
+  { category: 'Breakfast', name: 'Pancakes', price: 10, image: 'img/pancakes.jpg' },
+  { category: 'Breakfast', name: 'Breakfast Burrito', price: 12, image: 'img/breakfast-burrito.jpg' },
+  { category: 'Dinner', name: 'Grilled Steak', price: 25, image: 'img/grilled-steak.jpg' },
+  { category: 'Dinner', name: 'Pan-Seared Salmon', price: 22, image: 'img/pan-seared-salmon.jpg' },
+  { category: 'Dinner', name: 'Vegetarian Quinoa Bowl', price: 18, image: 'img/vegetarian-quinoa-bowl.jpg' },
+  { category: 'Food', name: 'Sandwich', price: 5, image: 'img/sandwich.jpg' },
+  { category: 'Food', name: 'Pasta', price: 7, image: 'img/pasta.jpg' },
+  { category: 'Food', name: 'Fish & Chips', price: 8, image: 'img/fish-chips.jpg' },
+  { category: 'Beverages', name: 'Coke', price: 2, image: 'img/coke.jpg' },
+  { category: 'Beverages', name: 'Fanta', price: 2, image: 'img/fanta.jpg' },
+  { category: 'Alcoholic Beverages', name: 'Jim Beam (1 peg)', price: 10, image: 'img/jim-beam.jpg' },
+  { category: 'Alcoholic Beverages', name: 'Laphroaig', price: 12, image: 'img/laphroaig.jpg' },
+  { category: 'Alcoholic Beverages', name: 'Macallan', price: 15, image: 'img/macallan.jpg' }
 ];
 
 // Store selected services
