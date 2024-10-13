@@ -35,14 +35,8 @@ form.addEventListener('submit', function (event) {
     return;
   }
 
-  // Get existing flight info from sessionStorage
-  const flightInfo = JSON.parse(sessionStorage.getItem('flightInfo')) || {};
-
-  // Add passenger details to flightInfo
-  flightInfo.passengerDetails = passengerDetails;
-
-  // Save updated flightInfo back to sessionStorage
-  sessionStorage.setItem('flightInfo', JSON.stringify(flightInfo));
+  // Save passenger details to sessionStorage
+  sessionStorage.setItem('passengerDetails', JSON.stringify(passengerDetails));
 
   // Redirect to seat selection page
   window.location.href = 'seat-selection.html';

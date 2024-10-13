@@ -116,24 +116,26 @@ document.addEventListener('DOMContentLoaded', function() {
       seatMap.appendChild(rowContainer);
   });
 
-  // Add event listener to the next button
-  nextBtn.addEventListener('click', () => {
-      if (selectedSeatsCount !== numPassengers) {
-          alert(`Please select exactly ${numPassengers} seat(s).`);
-          return;
-      }
+// Add event listener to the next button
+nextBtn.addEventListener('click', () => {
+  if (selectedSeatsCount !== numPassengers) {
+    alert(`Please select exactly ${numPassengers} seat(s).`);
+    return;
+  }
 
-      // Add selected seats to flightInfo
-      const selectedSeats = Array.from(document.querySelectorAll('.seat.selected'))
-          .map(seat => `${String.fromCharCode(65 + Array.from(seat.parentNode.children).indexOf(seat))}${Array.from(seat.parentNode.parentNode.children).indexOf(seat.parentNode) + 1}`);
-      flightInfo.selectedSeats = selectedSeats;
+  // Get selected seats
+  const selectedSeats = Array.from(document.querySelectorAll('.seat.selected'))
+    .map(seat => `${String.fromCharCode(65 + Array.from(seat.parentNode.children).indexOf(seat))}${Array.from(seat.parentNode.parentNode.children).indexOf(seat.parentNode) + 1}`);
 
-      // Save updated flightInfo back to sessionStorage
-      sessionStorage.setItem('flightInfo', JSON.stringify(flightInfo));
+  // Save selected seats to sessionStorage
+  sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
 
-      // Redirect to the next page (e.g., payment page)
-      window.location.href = 'services.html';
-  });
+  // Save updated flightInfo back to sessionStorage (without selectedSeats)
+  sessionStorage.setItem('flightInfo', JSON.stringify(flightInfo));
+
+  // Redirect to the next page (e.g., payment page)
+  window.location.href = 'services.html';
+});
 
   function updateSelectedSeatsDisplay() {
       const selectedSeats = Array.from(document.querySelectorAll('.seat.selected'))
