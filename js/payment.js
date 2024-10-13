@@ -1,3 +1,13 @@
+// Parse query parameters from sessionStorage
+const flightInfo = JSON.parse(sessionStorage.getItem('flightInfo'));
+const selectedFrom = JSON.parse(sessionStorage.getItem('selectedFlightFrom'));
+const selectedTo = JSON.parse(sessionStorage.getItem('selectedFlightTo'));
+const passengerDetails = JSON.parse(sessionStorage.getItem('passengerDetails'));
+console.log(flightInfo);
+console.log(selectedFrom);
+console.log(selectedTo);
+console.log(passengerDetails)
+
 document.addEventListener('DOMContentLoaded', () => {
   // Retrieve and display booking summary from localStorage
   const flightDetails = JSON.parse(localStorage.getItem('flightDetails')) || {};
