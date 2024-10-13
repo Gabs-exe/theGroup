@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Include your stylesheet -->
+</head>
+<body>
+  <div class="confirmation-container">
+    <h1>Thank you for your payment!</h1>
+    <p>Your booking has been confirmed.</p>
+    <p>Your reference number is: <span id="reference-number"></span></p>
+    <button id="next-btn">Next</button>
+  </div>
+
+  <script>
+    const referenceNumber = Math.floor(100000 + Math.random() * 900000);
+    sessionStorage.setItem('referenceNumber', referenceNumber);
+    document.getElementById('reference-number').innerText = referenceNumber;
+
+    document.getElementById('next-btn').addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent form submission
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
