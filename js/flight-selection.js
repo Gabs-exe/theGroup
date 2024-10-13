@@ -11,8 +11,6 @@ async function fetchFlightData() {
 const flightData = fetchFlightData();
 
 const shortName = { "Sydney": "SYD", "Melbourne": "MEL", "Brisbane": "BNE", "Perth": "PER", "Auckland": "AKL", "Wellington": "WLG" };
-let selectedFlightFrom = {};
-let selectedFlightTo = {};
 
 window.onload = function () {
     let flightHeaderFrom = document.getElementById('from-title');
@@ -105,9 +103,9 @@ window.onload = function () {
                                 const price = Math.floor(Math.random() * 190) + 100;
 
                                 let flightDetail = `
-                                <li class="flight-card" data="flight-${flightInfo.fromLocation}-${flightInfo.toLocation}-${timing}-${price}">
+                                <li class="flight-card" data="flight-${flightInfo.toLocation}-${flightInfo.fromLocation}-${timing}-${price}">
                                     <div class="card1">
-                                        <p>${shortName[flightInfo.fromLocation]} ${formattedTimeStart}</p>
+                                        <p>${shortName[flightInfo.toLocation]} ${formattedTimeStart}</p>
                                         <p>${flightInfo.fromLocation}</p>
                                         <p>${formattedDate}</p>
                                     </div>
@@ -115,7 +113,7 @@ window.onload = function () {
                                         <img src="img/plane.png">
                                     </div>
                                     <div class="card1">
-                                        <p>${shortName[flightInfo.toLocation]} ${formattedTimeEnd}</p>
+                                        <p>${shortName[flightInfo.fromLocation]} ${formattedTimeEnd}</p>
                                         <p>${flightInfo.toLocation}</p>
                                         <p>${formattedDate}</p>
                                     </div>
