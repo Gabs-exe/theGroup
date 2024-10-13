@@ -46,7 +46,7 @@
                 {
                     "destination": "Sydney",
                     "planeType": "Airbus A320",
-                    "timings": [730, 900, 1100, 1330, 1300],
+                    "timings": [730, 900, 1100, 1330, 1700],
                     "duration": 90,
                     "maxCapacity": 180
                 },
