@@ -30,8 +30,20 @@ window.onload = function() {
     <p><strong>Email:</strong> ${bookingDetails.passengerDetails.email || 'N/A'}</p>
     </div>`
 
-    bookingHTMl.innerHTML += selectedServices.length 
-    ? selectedServices.map(service => `${service.name} - $${service.price}`).join('<br>') 
-    : 'No services selected.'
+   // Display selected services under booking information
+   if (bookingDetails.selectedServices.length > 0) {
+    bookingHTMl.innerHTML += `
+    <div>
+        <h3>Selected Services:</h3>
+        ${bookingDetails.selectedServices.map(service => `<p>${service.name} - $${service.price}</p>`).join('')}
+    </div>
+    `;
+} else {
+    bookingHTMl.innerHTML += `
+    <div>
+        <h3>No services selected.</h3>
+    </div>
+    `;
+}
 
 };
