@@ -412,10 +412,6 @@
    margin-bottom: 20px;
  }
 
- .card1 {
-   background-color: #f8f8f8;
- }
-
  .card2 {
    display: flex;
    align-items: center;
@@ -427,7 +423,7 @@
  }
 
  .selected-flight {
-   background-color: #0056b3;
+   background-color: #95A5A6;
  }
 
  .move-on {
@@ -574,7 +570,7 @@ button:hover {
 }
 
 .selected {
-  background-color: green;  /* Set background color to white */
+  background-color: #95A5A6;  /* Set background color to white */
   color: black;  /* Set text color to black for visibility */
   border: 1px solid #ddd;  /* Optional: Add border */
 }
@@ -600,4 +596,9 @@ h1, h2 {
   margin: 30px auto 0;
   margin-bottom: 10px;
   text-align: center;
+}
+
+.review-table {
+  display: flex;
+  justify-content: space-around;
 }

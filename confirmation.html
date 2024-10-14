@@ -16,7 +16,7 @@
 
   <script>
     const referenceNumber = Math.floor(100000 + Math.random() * 900000);
-    sessionStorage.setItem('referenceNumber', referenceNumber);
+    localStorage.setItem('referenceNumber', referenceNumber);
     document.getElementById('reference-number').innerText = referenceNumber;
 
     document.getElementById('next-btn').addEventListener('click', (e) => {

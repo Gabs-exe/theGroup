@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Display flight details (departure)
   const flightDetailsDiv = document.getElementById('flight-details');
   flightDetailsDiv.innerHTML = `
-    <p><strong>Flight ID:</strong> ${flightId || 'N/A'}</p>
     <p><strong>From:</strong> ${selectedFlightFrom?.fromLocation || 'N/A'}</p>
     <p><strong>To:</strong> ${selectedFlightFrom?.toLocation || 'N/A'}</p>
     <p><strong>Depart Date:</strong> ${departDate || 'N/A'}</p>
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // If it's a return trip, show the return flight details
   if (!oneWayOrReturn && selectedFlightTo && returnDate) {
     flightDetailsDiv.innerHTML += `
-      <p><strong>Return Flight:</strong></p>
+      -----------------------------------------------------------
       <p><strong>From:</strong> ${selectedFlightTo?.fromLocation || 'N/A'}</p>
       <p><strong>To:</strong> ${selectedFlightTo?.toLocation || 'N/A'}</p>
       <p><strong>Return Date:</strong> ${returnDate || 'N/A'}</p>

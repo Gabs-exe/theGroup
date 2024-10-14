@@ -20,12 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Save booking details to localStorage (if needed)
     const flightInfo = JSON.parse(sessionStorage.getItem('flightInfo'));
     const passengerDetails = JSON.parse(sessionStorage.getItem('passengerDetails'));
+    const selectedFlightFrom = JSON.parse(sessionStorage.getItem('selectedFlightFrom'));
+    const selectedFlightTo = JSON.parse(sessionStorage.getItem('selectedFlightTo'));
     const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats'));
     const selectedServices = JSON.parse(sessionStorage.getItem('selectedServices'));
 
     const bookingDetails = {
       flightInfo,
       passengerDetails,
+      selectedFlightFrom,
+      selectedFlightTo,
       selectedSeats,
       selectedServices,
     };

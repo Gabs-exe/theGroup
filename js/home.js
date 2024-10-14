@@ -1,5 +1,4 @@
 // Clear localStorage + sessionStorage then initialise the content
-localStorage.clear(); // legacy workaround. Use sessionStorage for instance purposes
 sessionStorage.clear();
 
 async function fetchFlightData() {
@@ -73,9 +72,9 @@ returnDateInput.addEventListener('change', () => {
 
 // Disable the return date input if the one-way checkbox is checked
 const oneWayCheckbox = document.getElementById('one-way');
-oneWayCheckbox.addEventListener('change', () => {checkState()});
+oneWayCheckbox.addEventListener('change', () => { checkState() });
 
-function checkState() { 
+function checkState() {
     if (oneWayCheckbox.checked) {
         returnDateInput.disabled = true;
         returnDateInput.value = '';
@@ -196,3 +195,21 @@ document.getElementById('book-flight-form').addEventListener('submit', function 
     window.location.href = `flight-selection.html`;
 });
 
+document.getElementById('checkBooking').addEventListener('click', function (e) {
+    e.preventDefault();
+    const bookingRef = document.getElementById('booking-reference').value;
+    const lastName = document.getElementById('last-name').value;
+
+    const bookingInfo = JSON.parse(localStorage.getItem('bookingDetails'));
+    if (bookingRef != localStorage.getItem('referenceNumber') && lastName != bookingInfo.passengerDetails.lastName) {
+        alert('Please enter a valid booking number and last name.');
+        return;
+    }
+    console.log(bookingRef, lastName);
+
+    // save form data to sessionStorage
+    sessionStorage.setItem('bookingInfo', JSON.stringify({ bookingRef, lastName }));
+
+    // Redirect to results page 
+    window.location.assign('manage-booking.html');
+});
