@@ -14,9 +14,9 @@ window.onload = function() {
       <p><strong>Seat selection:</strong> ${bookingDetails.selectedSeats[0] || 'N/A'}</p>
       ---------------------------------
       <p><strong>Date:</strong> ${bookingDetails.flightInfo.returnDate || 'N/A'}</p>
-      <p><strong>From:</strong> ${bookingDetails.selectedFlightTo.fromLocation || 'N/A'}</p>
-      <p><strong>To:</strong> ${bookingDetails.selectedFlightTo.toLocation || 'N/A'}</p>
-      <p><strong>Time:</strong> ${bookingDetails.selectedFlightTo.time || 'N/A'}</p>
+      <p><strong>From:</strong> ${bookingDetails.selectedFlightFrom?.fromLocation || 'N/A'}</p>
+      <p><strong>To:</strong> ${bookingDetails.selectedFlightTo?.toLocation || 'N/A'}</p>
+      <p><strong>Time:</strong> ${bookingDetails.selectedFlightTo?.time || 'N/A'}</p>
       <p><strong>Seat selection:</strong> ${bookingDetails.selectedSeats[0] || 'N/A'}</p>
   </div>
   <div>
