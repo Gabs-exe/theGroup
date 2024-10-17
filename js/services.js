@@ -1,8 +1,8 @@
 // Create a consolidated array of services from all categories
 const services = [
-  { category: 'Launch', name: 'Appetizer Platter', price: 10, image: 'img/appetizer-platter.jpg' },
-  { category: 'Launch', name: 'Soup of the Day', price: 8, image: 'img/soup-of-the-day.jpg' },
-  { category: 'Launch', name: 'Salad Mix', price: 12, image: 'img/salad-mix.jpg' },
+  { category: 'Lunch', name: 'Appetizer Platter', price: 10, image: 'img/appetizer-platter.jpg' },
+  { category: 'Lunch', name: 'Soup of the Day', price: 8, image: 'img/soup-of-the-day.jpg' },
+  { category: 'Lunch', name: 'Salad Mix', price: 12, image: 'img/salad-mix.jpg' },
   { category: 'Breakfast', name: 'Eggs Benedict', price: 15, image: 'img/eggs-benedict.jpg' },
   { category: 'Breakfast', name: 'Pancakes', price: 10, image: 'img/pancakes.jpg' },
   { category: 'Breakfast', name: 'Breakfast Burrito', price: 12, image: 'img/breakfast-burrito.jpg' },

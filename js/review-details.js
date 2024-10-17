@@ -15,9 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const { flightId, departDate, returnDate, oneWayOrReturn } = flightInfo;
 
-  // Retrieve selected flight from and to from sessionStorage
+  // Retrieve selected flight from and to from sessionStorage + seat number
   const selectedFlightFrom = JSON.parse(sessionStorage.getItem('selectedFlightFrom'));
   const selectedFlightTo = JSON.parse(sessionStorage.getItem('selectedFlightTo'));
+  const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats'));
+  const selectedSeatsDiv = document.getElementById('selected-seats');
 
   // Display flight details (departure)
   const flightDetailsDiv = document.getElementById('flight-details');
@@ -25,15 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
     <p><strong>From:</strong> ${selectedFlightFrom?.fromLocation || 'N/A'}</p>
     <p><strong>To:</strong> ${selectedFlightFrom?.toLocation || 'N/A'}</p>
     <p><strong>Depart Date:</strong> ${departDate || 'N/A'}</p>
+    <p><strong>Seat Number:</strong> ${selectedSeats || 'N/A'}</p> 
   `;
 
   // If it's a return trip, show the return flight details
   if (!oneWayOrReturn && selectedFlightTo && returnDate) {
     flightDetailsDiv.innerHTML += `
-      -----------------------------------------------------------
+      ---------------------------------------------------------------------------
       <p><strong>From:</strong> ${selectedFlightTo?.fromLocation || 'N/A'}</p>
       <p><strong>To:</strong> ${selectedFlightTo?.toLocation || 'N/A'}</p>
       <p><strong>Return Date:</strong> ${returnDate || 'N/A'}</p>
+    <p><strong>Seat Number:</strong> ${"D1" || 'N/A'}</p> 
     `;
   }
 
@@ -48,11 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     <p><strong>Contact:</strong> ${passengerDetails.countryCode || ''} ${passengerDetails.contactNumber || 'N/A'}</p>
     <p><strong>Email:</strong> ${passengerDetails.email || 'N/A'}</p>
   `;
-
-  // Retrieve selected seats from sessionStorage
-  const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats'));
-  const selectedSeatsDiv = document.getElementById('selected-seats');
-  selectedSeatsDiv.innerHTML = selectedSeats && selectedSeats.length ? selectedSeats.join('<br>') : 'No seats selected.';
 
   // Retrieve selected services from sessionStorage
   const selectedServices = JSON.parse(sessionStorage.getItem('selectedServices')) || [];

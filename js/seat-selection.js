@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (rowIndex === 0) {
           row.forEach((seat, columnIndex) => {
+            rowContainer.classList.add('row-header');
               const columnHeaders = document.createElement('span');
               columnHeaders.classList.add('column-header');
               columnHeaders.innerHTML = String.fromCharCode(65 + columnIndex); // A, B, C, D, E, F
