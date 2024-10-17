@@ -2,7 +2,17 @@ window.onload = function() {
   const bookingDetails = JSON.parse(localStorage.getItem('bookingDetails'));
   const bookingReference = JSON.parse(localStorage.getItem('referenceNumber'));
   const bookingHTMl = document.getElementById('booking-info');
-
+  const cancelBookingButton = document.getElementById('cancel-booking');
+cancelBookingButton.addEventListener('click', () => {
+    if (confirm("Do you want to cancel this booking?")) {
+        // Clear booking details from local storage
+        localStorage.removeItem('bookingDetails');
+        localStorage.removeItem('referenceNumber');
+        
+        // Optionally redirect to the homepage or another page
+        window.location.href = 'index.html'; // Change this to your desired URL
+    }
+});
   // Display booking information
   bookingHTMl.innerHTML = `
   <div>
